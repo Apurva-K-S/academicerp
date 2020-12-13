@@ -1,8 +1,5 @@
 package com.example.erp.bean;
 
-
-import sun.util.resources.Bundles;
-
 import javax.persistence.*;
 
 @Entity

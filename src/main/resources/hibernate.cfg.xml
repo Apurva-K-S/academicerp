@@ -15,5 +15,12 @@
         <!--
             Add ur bean file mappings here.
         -->
+        <mapping class="com.example.erp.bean.alumni_organisation" />
+        <mapping class="com.example.erp.bean.students" />
+        <mapping class="com.example.erp.bean.placement_student" />
+        <mapping class="com.example.erp.bean.placement" />
+        <mapping class="com.example.erp.bean.employee" />
+        <mapping class="com.example.erp.bean.organisations" />
+
     </session-factory>
 </hibernate-configuration>
