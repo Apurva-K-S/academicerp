@@ -8,18 +8,14 @@ import javax.persistence.*;
 @Entity
 public class employee {
 
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Integer employee_id;
-
     @Column(nullable = false)
     private String first_name;
-
     private String last_name;
-
     @Column(nullable = false, unique = true)
     private String email;
-
     private String title;
     private String department;
 
@@ -31,7 +27,7 @@ public class employee {
         this.last_name = last_name;
         this.email = email;
         this.title = title;
-        this.department = "outreach";  // as here we have to allow "outreach" department employees only to login. we are fixing it as string.
+        this.department = department;
     }
 
     public Integer getEmployee_id() {
@@ -83,9 +79,3 @@ public class employee {
     }
 }
 
-/*
-    Doubts:
-        Do we have any manytomany relations for this file?
-        for primary key is it just mentioning @Id and @GeneratedValue or do we have to do anything else?
-        How to specify foreign key of SQL, here ? any annotations?
-*/
