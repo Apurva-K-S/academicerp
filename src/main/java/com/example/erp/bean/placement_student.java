@@ -1,10 +1,10 @@
 package com.example.erp.bean;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name = "placement_student")
 public class placement_student {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -11,84 +11,51 @@
     <div class="py-5 text-center">
         <img alt="" class="d-block mx-auto mb-4" height="72" src="assets/svg/bootstrap-solid.svg" width="72">
         <h2>Academic ERP</h2>
-        <!--<p class="lead">Below is an example form built entirely with Bootstrap’s form controls. Please fill in necessary
-            details, like student details and courses details</p>-->
     </div>
 
-    <div class="col-md-8 order-md-1">
-        <h4 class="mb-3">Employee Login</h4>
-        <form class="needs-validation-students" id="employee-validation" novalidate>
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label for="first_name">First name</label>
-                    <input class="form-control" id="first_name" placeholder="" required type="text" value="">
-                    <div class="invalid-feedback">
-                        Valid first name is required.
-                    </div>
-                </div>
-            </div>
-            <div class="mb-3">
-                <label for="email">Email</label>
-                <input class="form-control" id="email" placeholder="you@example.com" required type="email">
-                <div class="invalid-feedback">
-                    Please enter a valid email address for updates.
-                </div>
-            </div>
-            <div class="mb-3">
-                <label for="departments">Department</label>
-                <select class="custom-select d-block w-100" id="departments" required>
-                    <option value="">Choose...</option>
-                </select>
-                <div class="invalid-feedback">
-                    Please select a valid Department/s.
-                </div>
-            </div>
+    <form class="form-signin" id="login-validation">
+        <h2 style="margin-bottom: 20px">Academic ERP</h2>
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 
-            <hr class="mb-4">
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to login</button>
-        </form>
-    </div>
-    <br/>
-    <hr class="mb-4">
-
-    <!--
-    <div class="col-md-8 order-md-1">
-        <h4 class="mb-3">Course Details</h4>
-        <form class="needs-validation-courses" id="course-validation" novalidate>
-            <div class="mb-3">
-                <label for="name">Name</label>
-                <input class="form-control" id="name" placeholder="" required type="text" value="">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="first_name">First name</label>
+                <input class="form-control" id="first_name" placeholder="" required type="text" value="">
                 <div class="invalid-feedback">
-                    Valid course name is required.
+                    Valid first name is required.
                 </div>
             </div>
-
-            <div class="mb-3">
-                <label for="description">Description</label>
-                <input class="form-control" id="description" placeholder="" required type="text">
-                <div class="invalid-feedback">
-                    Please enter a valid description of the course.
-                </div>
+        </div>
+        <div class="mb-3">
+            <label for="email">Email Address</label>
+            <input class="form-control" id="email" placeholder="you@example.com" required type="email">
+            <div class="invalid-feedback">
+                Please enter a valid email address for updates.
             </div>
-
-            <div class="mb-3">
-                <label for="credits">Credits</label>
-                <input class="form-control" id="credits" placeholder="" required type="number" value="4">
-                <div class="invalid-feedback">
-                    Valid credits of the course is required.
-                </div>
+        </div>
+        <div class="mb-3">
+            <label for="departments">Department</label>
+            <select class="custom-select d-block w-100" id="departments" required>
+                <option value="">Choose...</option>
+            </select>
+            <div class="invalid-feedback">
+                Please select a valid Department/s.
             </div>
+        </div>
 
-            <hr class="mb-4">
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to register</button>
-        </form>
-    </div>
-    -->
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <div class="alert alert-warning" role="alert" id="login-alert" style="display: none; margin-top: 20px">
+            Invalid Email Address!!
+        </div>
+
+    </form>
+
+
 </div>
 <footer class="my-5 pt-5 text-muted text-center text-small">
 </footer>
 </body>
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/form-validation.js"></script>
+<script src="assets/js/login-validation.js"></script>
 </html>

@@ -3,6 +3,7 @@ package com.example.erp.bean;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "employee")
 public class employee {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
