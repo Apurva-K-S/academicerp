@@ -7,17 +7,22 @@ import javax.persistence.*;
 @Table(name = "organization")
 public class organisations {
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
+    @Column(name="id", nullable = false, unique = true)
     private Integer id;  // maps to "organisation" field of placement and to "organisation" field of Alumni_organisation.
-    @Column(nullable = false)
+
+    @Column(name="name", nullable = false)
     private String name;
+
+    @Column(name="address")
     private String address;
 
     public organisations() {
     }
 
-    public organisations(String name, String address) {
+    public organisations(Integer id,String name, String address) {
+        this.id = id;
         this.name = name;
         this.address = address;
     }

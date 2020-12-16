@@ -6,21 +6,31 @@ import javax.persistence.*;
 @Table(name = "employee")
 public class employee {
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+   // @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    private Integer employee_id;
-    @Column(nullable = false)
+    @Column(name="id", nullable = false, unique = true)
+    private int id;
+
+    @Column(name="first_name", nullable = false)
     private String first_name;
+
+    @Column(name="last_name")
     private String last_name;
-    @Column(nullable = false, unique = true)
+
+    @Column(name="email", nullable = false, unique = true)
     private String email;
+
+    @Column(name="title")
     private String title;
+
+    @Column(name="department")
     private String department;
 
     public employee() {
     }
 
-    public employee(String first_name, String last_name, String email, String title, String department) {
+    public employee(int id,String first_name, String last_name, String email, String title, String department) {
+        this.id = id;
         this.first_name = first_name;
         this.last_name = last_name;
         this.email = email;
@@ -28,12 +38,12 @@ public class employee {
         this.department = department;
     }
 
-    public Integer getEmployee_id() {
-        return employee_id;
+    public int getId() {
+        return id;
     }
 
-    public void setEmployee_id(Integer employee_id) {
-        this.employee_id = employee_id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFirst_name() {

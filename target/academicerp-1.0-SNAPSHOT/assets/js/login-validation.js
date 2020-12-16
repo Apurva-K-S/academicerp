@@ -12,6 +12,7 @@ login_form.addEventListener('submit', async (e) => {
             },
             body: JSON.stringify({
                 email: document.getElementById('email').value,
+                department: document.getElementById("departments").value,
             })
         });
         let result = await response;
@@ -33,4 +34,6 @@ async function fetch_department(){
     for(let i = 0 ; i<departments.length ; i++){
         dep_option.innerHTML += '<option value="'+departments[i]+'">'+departments[i]+'</option>';
     }
+
+    //let response2 = await fetch("api/employee/add", {method: 'POST'});
 }

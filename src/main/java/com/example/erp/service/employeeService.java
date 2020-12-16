@@ -11,4 +11,7 @@ public class employeeService {
     public boolean verifyEmail(employee emp){
         return empDAO.emailVerify(emp);
     }
+    public void addEmployee(employee emp){
+        empDAO.addEmployee(emp);
+    }
 }

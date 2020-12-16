@@ -6,22 +6,34 @@ import javax.persistence.*;
 @Table(name = "placement")
 public class placement {
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
+    @Column(name="id", nullable = false, unique = true)
     private Integer id;
-    private Integer organisation;  // maps to "id" of organisations.
-    @Column(nullable = false)
+
+    //private Integer organisation;  // maps to "id" of organisations. foreign key.
+    @ManyToOne
+    @JoinColumn(name="organisation")
+    private organisations org;
+
+    @Column(name="profile",nullable = false)
     private String profile;
+
+    @Column(name="description")
     private String description;
-    @Column(nullable = false)
+
+    @Column(name="intake", nullable = false)
     private Integer intake;
-    private Integer minimum_grade;
+
+    @Column(name="minimum_grade")
+    private Double minimum_grade;
 
     public placement() {
     }
 
-    public placement(Integer organisation, String profile, String description, Integer intake, Integer minimum_grade) {
-        this.organisation = organisation;
+    public placement(Integer id, organisations o, String profile, String description, Integer intake, Double minimum_grade) {
+        this.id = id;
+        this.org = o;
         this.profile = profile;
         this.description = description;
         this.intake = intake;
@@ -36,12 +48,12 @@ public class placement {
         this.id = id;
     }
 
-    public Integer getOrganisation() {
-        return organisation;
+    public organisations getOrganisation() {
+        return org;
     }
 
-    public void setOrganisation(Integer organisation) {
-        this.organisation = organisation;
+    public void setOrganisation(organisations organisation) {
+        this.org = organisation;
     }
 
     public String getProfile() {
@@ -68,11 +80,11 @@ public class placement {
         this.intake = intake;
     }
 
-    public Integer getMinimum_grade() {
+    public Double getMinimum_grade() {
         return minimum_grade;
     }
 
-    public void setMinimum_grade(Integer minimum_grade) {
+    public void setMinimum_grade(Double minimum_grade) {
         this.minimum_grade = minimum_grade;
     }
 }

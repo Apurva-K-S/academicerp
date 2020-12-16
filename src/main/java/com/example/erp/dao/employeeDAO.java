@@ -6,5 +6,6 @@ public interface employeeDAO {
 
     boolean emailVerify(employee emp);
     //boolean registerStudent(employee emp);
+    void addEmployee(employee emp);
 
 }

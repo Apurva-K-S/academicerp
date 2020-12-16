@@ -5,6 +5,7 @@ package com.example.erp.controller;
 
 import com.example.erp.bean.employee;
 import com.example.erp.service.employeeService;
+import com.example.erp.utils.AddingData;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -48,6 +49,15 @@ public class employeeController {
         return Response.ok().build();
 
     }*/
+
+    @POST
+    @Path("/add")
+    public Response addEmployee() throws URISyntaxException{
+        //employeeService.addEmployee();
+        AddingData addingData = new AddingData();
+        addingData.add();
+        return Response.ok().build();
+    }
 
     @POST
     @Path("/login")

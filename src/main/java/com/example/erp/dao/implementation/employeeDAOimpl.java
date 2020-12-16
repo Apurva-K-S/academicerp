@@ -14,12 +14,16 @@ public class employeeDAOimpl implements employeeDAO {
     public boolean emailVerify(employee student) {
         Session session = SessionUtils.getSession();
         try {
-            Query query = session.createQuery("from employee where email=:email and department=: dept ");
-            query.setParameter("email", student.getEmail());
-            query.setParameter("dept", "outreach");
-            if(query.getResultList().size()==1){
-                return true;
+            if(student.getDepartment().equals("outreach")) {
+                Query query = session.createQuery("from employee where email=:email and department=: dept ");
+                query.setParameter("email", student.getEmail());
+                query.setParameter("dept", student.getDepartment());
+                if (query.getResultList().size() == 1) {
+                    return true;
+                }
             }
+            else
+                return false;
         } catch (HibernateException exception) {
             System.out.print(exception.getLocalizedMessage());
             return false;
@@ -27,5 +31,28 @@ public class employeeDAOimpl implements employeeDAO {
             session.close();
         }
         return false;
+    }
+
+    @Override
+    public void addEmployee(employee emp) {
+
+        //Session session = SessionUtils.getSession();
+
+        Session session = SessionUtils.getSession();
+        try {
+            Transaction transaction = session.beginTransaction();
+
+            //public employee(String first_name, String last_name, String email, String title, String department) {
+            //employee emp = new employee(5,"emp5","emp5","emp5@iiitb.org","head","Counseller");
+
+            session.save(emp);
+            transaction.commit();
+            //return true;
+        } catch (HibernateException exception) {
+            System.out.print(exception.getLocalizedMessage());
+            //return false;
+        }finally {
+            session.close();
+        }
     }
 }
