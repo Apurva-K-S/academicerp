@@ -53,7 +53,7 @@ public class employeeController {
     @POST
     @Path("/add")
     public Response addEmployee() throws URISyntaxException{
-        //employeeService.addEmployee();
+        //employeeService.addEmployee();  => dont remove this.
         AddingData addingData = new AddingData();
         addingData.add();
         return Response.ok().build();
@@ -69,6 +69,18 @@ public class employeeController {
         }else{
             return Response.status(203).build();
         }
+    }
+
+    @GET
+    @Path("/options")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getOptions() {
+        List<String> options = new ArrayList<>();
+        options.add("Organisation");
+        options.add("Year");
+        options.add("Domain");
+        options.add("Specialisation");
+        return Response.ok().entity(options).build();
     }
 
 }

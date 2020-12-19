@@ -5,6 +5,7 @@
     <title>Students - Courses</title>
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/form-validation.css" rel="stylesheet">
+
 </head>
 <body class="bg-light">
 <div class="container">
@@ -15,7 +16,7 @@
             details, like student details and courses details</p>
     </div>
 
-    <div class="col-md-8 order-md-1">
+    <!--<div class="col-md-8 order-md-1">
         <h4 class="mb-3">Student Details</h4>
         <form class="needs-validation-students" id="student-validation" novalidate>
             <div class="row">
@@ -60,7 +61,7 @@
                 Details saved successfully!!
             </div>
         </form>
-    </div>
+    </div> -
     <br/>
     <hr class="mb-4">
 
@@ -94,7 +95,104 @@
             <hr class="mb-4">
             <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to register</button>
         </form>
-    </div>
+    </div>-->
+
+    <form class="needs-validation-students" id="form-validation" novalidate>
+        <div class="mb-3" id="div-choices">
+            <label for="options">You want to filter Students based on: </label>
+            <select class="custom-select d-block w-100" id="options" required>
+                <option value="">Choose...</option>
+            </select>
+            <div class="invalid-feedback">
+                Please select a valid option/s.
+            </div>
+        </div>
+
+        <button class="btn btn-lg btn-primary btn-block" id="button1" type="button" onclick="button_options()">
+            Go
+        </button>
+
+        <br>
+        <br>
+        <div class="mb-3" style="display:none"  id="div-Organisation" >
+            <label for="options">Choose an Organisation </label>
+            <select class="custom-select d-block w-100" id="org" required>
+                <option value="">Choose...</option>
+            </select>
+            <div class="invalid-feedback">
+                Please select a valid organisation/s.
+            </div>
+        </div>
+
+        <div class="mb-3" style="display:none" id="div-Year">
+
+            <label for="options">Choose an Year </label>
+            <select class="custom-select d-block w-100" id="year" required>
+                <option value="">Choose...</option>
+            </select>
+            <div class="invalid-feedback">
+                Please select a valid year/s.
+            </div>
+        </div>
+
+        <div class="mb-3" style="display:none" id="div-Domain">
+            <label for="options">Choose a Domain </label>
+            <select class="custom-select d-block w-100" id="domain" required>
+                <option value="">Choose...</option>
+            </select>
+            <div class="invalid-feedback">
+                Please select a valid Domain/s.
+            </div>
+        </div>
+
+        <div class="mb-3" style="display:none" id="div-Specialisation">
+            <label for="options">Choose a Specialisation </label>
+            <select class="custom-select d-block w-100" id="Specialisation" required>
+                <option value="">Choose...</option>
+            </select>
+            <div class="invalid-feedback">
+                Please select a valid Specialisation/s.
+            </div>
+        </div>
+
+        <div class="mb-3" style="display:none" id="for_button">
+            <button class="btn btn-lg btn-primary btn-block" id="button2" type="submit">
+                filter
+            </button>
+        </div>
+
+        <br>
+        <br>
+
+        <p id="end_result">
+
+        </p>
+        <!--<div class="mb-3" style="display:none" id="for_org">
+            <h6>
+                Here organisations and alumni will be displayed.
+            </h6>
+        </div>
+
+        <div class="mb-3" style="display:none" id="for_year">
+            <h6>
+                As per year.
+            </h6>
+        </div>
+
+        <div class="mb-3" style="display:none" id="for_domain">
+            <h6>
+                as per domain.
+            </h6>
+        </div>
+
+        <div class="mb-3" style="display:none" id="for_specialisation">
+            <h6>
+                as per specialisation.
+            </h6>
+        </div> -->
+
+    </form>
+
 </div>
 <footer class="my-5 pt-5 text-muted text-center text-small">
 </footer>

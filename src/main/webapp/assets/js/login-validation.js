@@ -1,7 +1,7 @@
 let login_form = document.getElementById('login-validation');
 window.onload = fetch_department;
 
-login_form.addEventListener('submit', async (e) => {
+/*login_form.addEventListener('submit', async (e) => {
     e.preventDefault();
     e.stopPropagation();
     if (login_form.checkValidity() === true) {
@@ -22,6 +22,40 @@ login_form.addEventListener('submit', async (e) => {
             document.getElementById("login-alert").style.display = "block";
         }
     }
+});*/
+
+login_form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (login_form.checkValidity() === true) {
+        document.getElementById("submit-button").style.display = "none";
+        document.getElementById("spinner-button").style.display = "block";
+        let response = await fetch('api/employee/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify({
+                email: document.getElementById('email').value,
+                department: document.getElementById("departments").value,
+            })
+        });
+        let result = await response;
+        console.log(response);
+        if(result['status'] === 200){
+            let data = response.json();
+            document.getElementById("submit-button").style.display = "block";
+            document.getElementById("spinner-button").style.display = "none";
+
+           // sessionStorage.setItem('id', data["student_id"]);
+            location.href = "dashboard.html";
+        }else{
+            document.getElementById("submit-button").style.display = "block";
+            document.getElementById("spinner-button").style.display = "none";
+
+            document.getElementById("login-alert").style.display = "block";
+        }
+    }
 });
 
 async function fetch_department(){
@@ -35,5 +69,5 @@ async function fetch_department(){
         dep_option.innerHTML += '<option value="'+departments[i]+'">'+departments[i]+'</option>';
     }
 
-    //let response2 = await fetch("api/employee/add", {method: 'POST'});
+    //let response2 = await fetch("api/employee/add", {method: 'POST'}); -> remove this if u want to create tables and load data into files.
 }

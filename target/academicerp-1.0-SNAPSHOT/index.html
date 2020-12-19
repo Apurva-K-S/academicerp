@@ -43,10 +43,17 @@
             </div>
         </div>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        <div class="alert alert-warning" role="alert" id="login-alert" style="display: none; margin-top: 20px">
+        <button class="btn btn-lg btn-primary btn-block" id="submit-button" type="submit">
+            Sign in
+        </button>
+        <button class="btn btn-lg btn-primary btn-block" disabled id="spinner-button" style="display: none;" type="submit">
+            <span aria-hidden="true" class="spinner-border spinner-border-sm" role="status"></span>
+            Signing in...
+        </button>
+        <div class="alert alert-warning" id="login-alert" role="alert" style="display: none; margin-top: 20px">
             Invalid Email Address!!
         </div>
+        <p class="mt-5 mb-3 text-muted">&copy; 2017-2020</p>
 
     </form>
 
