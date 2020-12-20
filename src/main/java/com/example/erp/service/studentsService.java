@@ -17,6 +17,14 @@ public class studentsService {
     public List<Object[]> getPlaced_Students (){
         return studentsDAO.getPlaced_Students();
     }
+
+    public List<Object[]> getNotPlaced_Students (){
+        return studentsDAO.getNotPlaced_Students();
+    }
+
+    public List<Object[]> getSpecialisation (students st){
+        return studentsDAO.getSpecialisation(st);
+    }
     //public List<students> getAll(){
     //    return studentsDAO.getAll();
     //}

@@ -48,12 +48,14 @@ public class studentsDAOimpl implements studentsDAO {
             //    stds.add((students) student);
             //}
             System.out.println("Inside studentsDAOimpl.java");
-            Query query = session.createQuery("select distinct s.first_name, s.id, o.name from students as s, placement_student as ps, placement as p, organisations as o " +
-           "inner join ps.plcmnt inner join p.org inner join ps.stds where s.placement_id = ps.id and ps.acceptance like 'ACCEPT' and s.placement_id  is not null order by s.id");
+          //->  //Query query = session.createQuery("select distinct s.first_name, s.id, o.name from students as s, placement_student as ps, placement as p, organisations as o " +
+           //"inner join ps.plcmnt inner join p.org inner join ps.stds where s.placement_id = ps.id and ps.acceptance like 'ACCEPT' and s.placement_id  is not null order by s.id");
 
             //Query query = session.createQuery("select distinct s.first_name, s.id, p.org from students as s, placement_student as ps, placement as p " +
             //        "inner join ps.plcmnt where s.placement_id = ps.id and ps.acceptance like 'ACCEPT' and s.placement_id  is not null order by s.id");
 
+            Query query = session.createQuery("select distinct students.first_name, students.roll_number, organisations.name from placement_student as ps inner join ps.stds students, placement_student as ps1 inner join ps1.plcmnt placement inner join placement.org organisations" +
+                    " where students.placement_id = ps.id and ps.id = ps1.id and ps.acceptance = 'ACCEPT' and students.placement_id  is not null order by students.roll_number");
 
             listResult = query.list();
             /*for(Object[] aRow : listResult){
@@ -99,5 +101,66 @@ public class studentsDAOimpl implements studentsDAO {
         transaction.commit();
         return stds;
     }*/
+
+    @Override
+    public List<Object[]> getNotPlaced_Students() {
+        Session session = SessionUtils.getSession();
+        //List<students> stds = new ArrayList<>();
+        List<Object[]> listResult = null;
+        try {
+
+            System.out.println("Inside studentsDAOimpl.java");
+
+            //Query query = session.createQuery("select distinct students.first_name, students.roll_number, organisations.name from placement_student as ps inner join ps.stds students, placement_student as ps1 inner join ps1.plcmnt placement inner join placement.org organisations" +
+            //        " where students.placement_id = ps.id and ps.id = ps1.id and ps.acceptance = 'ACCEPT' and students.placement_id  is null order by students.roll_number");
+
+            Query query = session.createQuery("select distinct s.first_name, s.roll_number, s.email from students s where s.placement_id is null order by s.roll_number");
+
+            listResult = query.list();
+
+            System.out.println("size of result: " + listResult.size());
+            System.out.println("size of result: " + listResult.get(0)[0]);
+            System.out.println("size of result: " + listResult.get(0)[1]);
+            System.out.println("size of result: " + listResult.get(0)[2]);
+
+            return listResult;
+
+        } catch (HibernateException exception) {
+            System.out.print(exception.getLocalizedMessage());
+        }
+        return listResult;
+    }
+    @Override
+    public List<Object[]> getSpecialisation(students st) {
+        Session session = SessionUtils.getSession();
+        //List<students> stds = new ArrayList<>();
+        List<Object[]> listResult = null;
+        try {
+
+            System.out.println("Inside studentsDAOimpl.java");
+
+            System.out.println("\n choosen spl is " + st.getSpecialisation());
+
+            Query query = session.createQuery("select distinct students.first_name, students.roll_number, organisations.name from placement_student as ps inner join ps.stds students, placement_student as ps1 inner join ps1.plcmnt placement inner join placement.org organisations" +
+                    " where students.placement_id = ps.id and ps.id = ps1.id and ps.acceptance = 'ACCEPT' and students.placement_id is not null and students.specialisation =: spl order by students.roll_number");
+
+            query.setParameter("spl", st.getSpecialisation());
+
+            //Query query = session.createQuery("select distinct s.first_name, s.roll_number, s.email from students s where s.placement_id is null order by s.roll_number");
+
+            listResult = query.list();
+
+            System.out.println("size of result: " + listResult.size());
+            System.out.println("size of result: " + listResult.get(0)[0]);
+            System.out.println("size of result: " + listResult.get(0)[1]);
+            System.out.println("size of result: " + listResult.get(0)[2]);
+
+            return listResult;
+
+        } catch (HibernateException exception) {
+            System.out.print(exception.getLocalizedMessage());
+        }
+        return listResult;
+    }
 
 }

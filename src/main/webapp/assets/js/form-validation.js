@@ -32,27 +32,54 @@ filter_form.addEventListener('submit', async (e) => {
         //let courses_option = document.getElementById('courses');
         //courses_option.innerHTML = '<option value=""> Choose...</option>';
         //ch_option.innerHTML = '<table style="width:100%"> <tbody>';
+
         ch_option.innerHTML = 'Placed Students List <br> <br>';
         for (let i = 0; i < placed.length; i++) {
-            //ch_option.innerHTML += '<tr> <td>'+placed[i]['id'] +'</td> <td>'+placed[i]['roll_number'] +'</td> <td>'+placed[i]['first_name'] +'</td> <td>'+placed[i]['email'] +'</td></tr>';
-            //ch_option.innerHTML += placed[i]['first_name'] + '&emsp;' + placed[i]['id'];
+                //ch_option.innerHTML += '<tr> <td>'+placed[i]['id'] +'</td> <td>'+placed[i]['roll_number'] +'</td> <td>'+placed[i]['first_name'] +'</td> <td>'+placed[i]['email'] +'</td></tr>';
+                //ch_option.innerHTML += placed[i]['first_name'] + '&emsp;' + placed[i]['id'];
                 //+ '&emsp;' +placed[i]['first_name'] + '&emsp;' + placed[i]['email'] + '<br>';
 
-            //for(let j=0; j<placed[i].length; j++){
-            ch_option.innerHTML += placed[i][0] + '&emsp;' + placed[i][1] + '&emsp;'+placed[i][2] + '<br>' ;
-            //}
-
+                //for(let j=0; j<placed[i].length; j++){
+            ch_option.innerHTML += placed[i][0] + '&emsp;' + placed[i][1] + '&emsp;' + placed[i][2] + '<br>';
+                //}
         }
-       // ch_option.innerHTML += '</tbody> </table>';
-
+            // ch_option.innerHTML += '</tbody> </table>';
     }
     else if(op1 === 'Not Placed')
     {
+        let response = await fetch("api/student/get_not_placed");
+        let not_placed = await response.json(); // read response body and parse as JSON
+        console.log(not_placed);
 
+        ch_option.innerHTML = 'Not Placed Students List <br> <br>';
+        for (let i = 0; i < not_placed.length; i++) {
+            ch_option.innerHTML += not_placed[i][0] + '&emsp;' + not_placed[i][1] + '&emsp;' + not_placed[i][2] + '<br>'
+        }
     }
     else if(op1 === 'Organisation')
     {
-        op2 = document.getElementById('org').value;
+
+        // here organisations part will come.
+
+        // this is alumni part.
+        let op2 = document.getElementById('org').value;
+        let response = await fetch("api/almorg/get_alumni",{
+        method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify({
+                name: op2,
+            })
+        });
+        let placed = await response.json(); // read response body and parse as JSON
+        console.log(placed);
+
+
+        ch_option.innerHTML = 'Placed Students List <br> <br>';
+        for (let i = 0; i < placed.length; i++) {
+            ch_option.innerHTML += placed[i][0] + '&emsp;' + placed[i][1] + '&emsp;' + placed[i][2] + '&emsp;' + placed[i][3] + '<br>';
+        }
     }
     else if(op1 === 'Year')
     {
@@ -65,9 +92,25 @@ filter_form.addEventListener('submit', async (e) => {
     else
     {
         op2 = document.getElementById('Specialisation').value;
+
+        let response = await fetch("api/student/get_specialisation",{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify({
+                specialisation: op2,
+            })
+        });
+
+        let placed = await response.json(); // read response body and parse as JSON
+        console.log(response);
+
+        ch_option.innerHTML = 'Placed Students List <br> <br>';
+        for (let i = 0; i < placed.length; i++) {
+            ch_option.innerHTML += placed[i][0] + '&emsp;' + placed[i][1] + '&emsp;' + placed[i][2] + '<br>';
+        }
     }
-
-
 });
 
 async function button_options(){

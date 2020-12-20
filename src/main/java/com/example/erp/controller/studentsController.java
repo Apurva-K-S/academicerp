@@ -62,17 +62,19 @@ public class studentsController {
         return Response.ok().entity(courses).build();
     }
 
-    /*@GET
-    @Path("/displayall")
+    @GET
+    @Path("/get_not_placed")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response displayAll() throws URISyntaxException {
+    public Response getNotPlaced_Students() {
+        List<Object[]> courses = studentsService.getNotPlaced_Students();
+        return Response.ok().entity(courses).build();
+    }
 
-        List<students> result = studentsService.getAll();
-
-        if(result == null){
-            return Response.noContent().build();
-        }
-
-        return Response.ok().entity(result).build();
-    }*/
+    @POST
+    @Path("/get_specialisation")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getSpecialisation_Students(students st) {
+        List<Object[]> courses = studentsService.getSpecialisation(st);
+        return Response.ok().entity(courses).build();
+    }
 }
