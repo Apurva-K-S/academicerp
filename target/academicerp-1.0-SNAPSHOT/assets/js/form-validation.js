@@ -1,7 +1,7 @@
-let filer_form = document.getElementById('form-validation');
+let filter_form = document.getElementById('form-validation');
 window.onload = fetch_options;
 
-filer_form.addEventListener('submit', async (e) => {
+filter_form.addEventListener('submit', async (e) => {
   e.preventDefault();
   e.stopPropagation();
   /*if (filer_form.checkValidity() === true) {
@@ -22,8 +22,35 @@ filer_form.addEventListener('submit', async (e) => {
   employee_form.classList.add('was-validated');*/
 
     let op1 = document.getElementById('options').value;
-    let op2;
-    if(op1 === 'Organisation')
+    let ch_option = document.getElementById('end_result');
+
+    if(op1 === 'Placed')
+    {
+        let response = await fetch("api/student/get_placed");
+        let placed = await response.json(); // read response body and parse as JSON
+        console.log(placed);
+        //let courses_option = document.getElementById('courses');
+        //courses_option.innerHTML = '<option value=""> Choose...</option>';
+        //ch_option.innerHTML = '<table style="width:100%"> <tbody>';
+        ch_option.innerHTML = 'Placed Students List <br> <br>';
+        for (let i = 0; i < placed.length; i++) {
+            //ch_option.innerHTML += '<tr> <td>'+placed[i]['id'] +'</td> <td>'+placed[i]['roll_number'] +'</td> <td>'+placed[i]['first_name'] +'</td> <td>'+placed[i]['email'] +'</td></tr>';
+            //ch_option.innerHTML += placed[i]['first_name'] + '&emsp;' + placed[i]['id'];
+                //+ '&emsp;' +placed[i]['first_name'] + '&emsp;' + placed[i]['email'] + '<br>';
+
+            //for(let j=0; j<placed[i].length; j++){
+            ch_option.innerHTML += placed[i][0] + '&emsp;' + placed[i][1] + '&emsp;'+placed[i][2] + '<br>' ;
+            //}
+
+        }
+       // ch_option.innerHTML += '</tbody> </table>';
+
+    }
+    else if(op1 === 'Not Placed')
+    {
+
+    }
+    else if(op1 === 'Organisation')
     {
         op2 = document.getElementById('org').value;
     }
@@ -40,15 +67,29 @@ filer_form.addEventListener('submit', async (e) => {
         op2 = document.getElementById('Specialisation').value;
     }
 
-    let ch_option = document.getElementById('end_result');
-    ch_option.innerHTML = '<br>' + op2 + '<br>';
+
 });
 
 async function button_options(){
 
     let chosen = document.getElementById('options').value;
 
-    if(chosen === "Organisation")
+    if(chosen === 'Placed')
+    {
+        document.getElementById("div-Organisation").style.display = "none";
+        document.getElementById("div-Domain").style.display = "none";
+        document.getElementById("div-Year").style.display = "none";
+        document.getElementById("div-Specialisation").style.display = "none";
+
+    }
+    else if(chosen === 'Not Placed')
+    {
+        document.getElementById("div-Organisation").style.display = "none";
+        document.getElementById("div-Domain").style.display = "none";
+        document.getElementById("div-Year").style.display = "none";
+        document.getElementById("div-Specialisation").style.display = "none";
+    }
+    else if(chosen === "Organisation")
     {
         document.getElementById("div-Organisation").style.display = "block";
         document.getElementById("div-Domain").style.display = "none";
@@ -132,6 +173,26 @@ async function fetch_options(){
     for(let i = 0 ; i<options.length ; i++){
         ch_option.innerHTML += '<option value="'+options[i]+'">'+options[i]+'</option>';
     }
+
+    /*let response2 = await fetch('api/student/displayall');
+
+    let result = await response2;
+    console.log(response2);
+    let placeholder = document.getElementById("all");
+
+    placeholder.innerHTML += '<br>';
+
+    if(result['status'] === 200)
+    {
+        let data = response2.json();
+        console.log(data);
+        placeholder.innerHTML += data['id'] + '<br>' + data['first_name'] + '<br>';
+    }
+    else
+    {
+        placeholder.innerHTML += 'No students to display';
+    }*/
+
 }
 
 async function go_to_display_page(){

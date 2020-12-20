@@ -76,6 +76,8 @@ public class employeeController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getOptions() {
         List<String> options = new ArrayList<>();
+        options.add("Placed");
+        options.add("Not Placed");
         options.add("Organisation");
         options.add("Year");
         options.add("Domain");

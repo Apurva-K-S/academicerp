@@ -1,13 +1,13 @@
 package com.example.erp.controller;
 
+import com.example.erp.bean.students;
 import com.example.erp.service.orgService;
 import com.example.erp.service.studentsService;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,4 +54,25 @@ public class studentsController {
         return Response.ok().entity(spls).build();
     }
 
+    @GET
+    @Path("/get_placed")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getPlaced_Students() {
+        List<Object[]> courses = studentsService.getPlaced_Students();
+        return Response.ok().entity(courses).build();
+    }
+
+    /*@GET
+    @Path("/displayall")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response displayAll() throws URISyntaxException {
+
+        List<students> result = studentsService.getAll();
+
+        if(result == null){
+            return Response.noContent().build();
+        }
+
+        return Response.ok().entity(result).build();
+    }*/
 }
