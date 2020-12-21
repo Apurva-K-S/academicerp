@@ -4,22 +4,6 @@ window.onload = fetch_options;
 filter_form.addEventListener('submit', async (e) => {
   e.preventDefault();
   e.stopPropagation();
-  /*if (filer_form.checkValidity() === true) {
-    let response = await fetch('api/departments/register', {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json;charset=utf-8'
-      },
-      body: JSON.stringify({
-          first_name: document.getElementById('first_name').value,
-          last_name: document.getElementById('last_name').value,
-          email: document.getElementById('email').value,
-      })
-    });
-    let result = await response;
-    console.log(result);
-  }
-  employee_form.classList.add('was-validated');*/
 
     let op1 = document.getElementById('options').value;
     let ch_option = document.getElementById('end_result');
@@ -27,98 +11,8 @@ filter_form.addEventListener('submit', async (e) => {
     let table2 = document.getElementById('alumni_table');
     let p_alumni = document.getElementById("alumni_p");
 
-    if(op1 === 'Placed')
-    {
-        let response = await fetch("api/student/get_placed");
 
-        if(response['status'] === 500)
-        {
-            console.log("No Data!!");
-            ch_option.innerHTML = 'No placed students here!!';
-
-            table.innerHTML = '';
-            table2.innerHTML = '';
-            p_alumni.innerHTML = '';
-        }
-        else {
-            let placed = await response.json(); // read response body and parse as JSON
-            console.log(placed);
-
-            ch_option.innerHTML = 'Placed Students List <br> <br>';
-            //for (let i = 0; i < placed.length; i++) {
-            //    ch_option.innerHTML += placed[i][0] + '&emsp;' + placed[i][1] + '&emsp;' + placed[i][2] + '<br>';
-            //}
-
-            table.innerHTML = '';
-            let row = table.insertRow(0);
-            let cell1 = row.insertCell(0);
-            let cell2 = row.insertCell(1);
-            let cell3 = row.insertCell(2);
-            let cell4 = row.insertCell(3);
-            cell1.innerHTML = "First Name";
-            cell2.innerHTML = "Roll number";
-            cell3.innerHTML = "Email";
-            cell4.innerHTML = "Organisation";
-
-            for(let i=0;i<placed.length; i++)
-            {
-                let row = table.insertRow(i+1);
-                for(let j=0;j<4;j++)
-                {
-                    let cell = row.insertCell(j);
-                    cell.innerHTML = placed[i][j];
-                }
-            }
-
-            table2.innerHTML = '';
-            p_alumni.innerHTML = '';
-        }
-    }
-    else if(op1 === 'Not Placed')
-    {
-        let response = await fetch("api/student/get_not_placed");
-
-        if(response['status'] === 500)
-        {
-            console.log("No Data!!");
-            ch_option.innerHTML = 'No placed students here!!';
-            let table = document.getElementById('results_table');
-            table.innerHTML = '';
-            table2.innerHTML = '';
-            p_alumni.innerHTML = '';
-        }
-        else {
-            let not_placed = await response.json(); // read response body and parse as JSON
-            console.log(not_placed);
-
-            //ch_option.innerHTML = 'Not Placed Students List <br> <br>';
-            //for (let i = 0; i < not_placed.length; i++) {
-            //    ch_option.innerHTML += not_placed[i][0] + '&emsp;' + not_placed[i][1] + '&emsp;' + not_placed[i][2] + '<br>'
-            //}
-
-            table.innerHTML = '';
-            let row = table.insertRow(0);
-            let cell1 = row.insertCell(0);
-            let cell2 = row.insertCell(1);
-            let cell3 = row.insertCell(2);
-            cell1.innerHTML = "First Name";
-            cell2.innerHTML = "Roll number";
-            cell3.innerHTML = "Email";
-            for(let i=0;i<not_placed.length; i++)
-            {
-                let row = table.insertRow(i+1);
-                for(let j=0;j<3;j++)
-                {
-                    let cell = row.insertCell(j);
-                    cell.innerHTML = not_placed[i][j];
-                }
-            }
-
-            table2.innerHTML = '';
-            p_alumni.innerHTML = '';
-        }
-    }
-    else if(op1 === 'Organisation')
+    if(op1 === 'Organisation')
     {
 
         let op2 = document.getElementById('org').value;
@@ -135,7 +29,7 @@ filter_form.addEventListener('submit', async (e) => {
         if(response2['status'] === 500)
         {
             console.log("current students empty!!");
-            ch_option.innerHTML = 'Current Students are not yet placed in this organisation';
+            ch_option.innerHTML = '<b> No Students placed in ' + op2 + ' yet </b>';
             let table = document.getElementById('results_table');
             table.innerHTML = '';
         }
@@ -143,22 +37,21 @@ filter_form.addEventListener('submit', async (e) => {
             let placed2 = await response2.json(); // read response body and parse as JSON
             console.log(placed2);
 
-            ch_option.innerHTML = 'Current Placed Students List <br> <br>';
+            ch_option.innerHTML = '<b> Students placed in ' + op2 + ' are: </b> <br>';
             //for (let i = 0; i < placed2.length; i++) {
             //    ch_option.innerHTML += placed2[i][0] + '&emsp;' + placed2[i][1] + '&emsp;' + placed2[i][2] + '&emsp;' + placed2[i][3] + '<br>';
             //}
 
-            let table = document.getElementById('results_table');
             table.innerHTML = '';
             let row = table.insertRow(0);
             let cell1 = row.insertCell(0);
             let cell2 = row.insertCell(1);
             let cell3 = row.insertCell(2);
             let cell4 = row.insertCell(3);
-            cell1.innerHTML = "First Name";
-            cell2.innerHTML = "Roll number";
-            cell3.innerHTML = "Email";
-            cell4.innerHTML = "Organisation Name";
+            cell1.innerHTML = "<b> First Name </b>";
+            cell2.innerHTML = "<b> Roll number </b>";
+            cell3.innerHTML = "<b> Email </b>";
+            cell4.innerHTML = "<b> Organisation Name </b>";
             for(let i=0;i<placed2.length; i++)
             {
                 let row = table.insertRow(i+1);
@@ -185,14 +78,14 @@ filter_form.addEventListener('submit', async (e) => {
         if(response['status'] === 500)
         {
             console.log("No Data!!");
-            p_alumni.innerHTML = 'No Alumni here!!';
+            p_alumni.innerHTML = '<b> No Alumni from ' + op2 + '</b>';
             table2.innerHTML = '';
         }
         else {
             let placed = await response.json(); // read response body and parse as JSON
             console.log(placed);
 
-            p_alumni.innerHTML = 'Alumni List <br> <br>';
+            p_alumni.innerHTML = '<b> Alumni from ' + op2 + ' are </b> <br> <br>';
             //for (let i = 0; i < placed.length; i++) {
             //    ch_option.innerHTML += placed[i][0] + '&emsp;' + placed[i][1] + '&emsp;' + placed[i][2] + '&emsp;' + placed[i][3] + '<br>';
             //}
@@ -204,10 +97,11 @@ filter_form.addEventListener('submit', async (e) => {
             let cell2 = row.insertCell(1);
             let cell3 = row.insertCell(2);
             let cell4 = row.insertCell(3);
-            cell1.innerHTML = "Alumni Name";
-            cell2.innerHTML = "Alumni Email";
-            cell3.innerHTML = "Joining Date";
-            cell4.innerHTML = "Organisation Name";
+            cell1.innerHTML = "<b> Alumni Name </b>";
+            cell2.innerHTML = "<b> Alumni Email </b>";
+            cell3.innerHTML = "<b> Joining Date </b>";
+            cell4.innerHTML = "<b> Organisation Name </b>";
+
             for(let i=0;i<placed.length; i++)
             {
                 let row = table2.insertRow(i+1);
@@ -234,7 +128,7 @@ filter_form.addEventListener('submit', async (e) => {
         if(response['status'] === 500)
         {
             console.log("No Data!!");
-            ch_option.innerHTML = 'No placed students from this year!!';
+            ch_option.innerHTML = '<b> Students of ' + op2 + ' year are yet to be placed </b> <br> ';
             table.innerHTML = '';
             table2.innerHTML = '';
             p_alumni.innerHTML = '';
@@ -243,22 +137,21 @@ filter_form.addEventListener('submit', async (e) => {
             let placed = await response.json(); // read response body and parse as JSON
             console.log(response);
 
-            ch_option.innerHTML = 'Placed Students List <br> <br>';
+            ch_option.innerHTML = '<b> List of placed students from ' + op2 + ' year are: </b> <br> ';
             //for (let i = 0; i < placed.length; i++) {
             //    ch_option.innerHTML += placed[i][0] + '&emsp;' + placed[i][1] + '&emsp;' + placed[i][2] + '&emsp;'+ placed[i][3] + '<br>';
             //}
 
-            let table = document.getElementById('results_table');
             table.innerHTML = '';
             let row = table.insertRow(0);
             let cell1 = row.insertCell(0);
             let cell2 = row.insertCell(1);
             let cell3 = row.insertCell(2);
             let cell4 = row.insertCell(3);
-            cell1.innerHTML = "First Name";
-            cell2.innerHTML = "Roll number";
-            cell3.innerHTML = "Email";
-            cell4.innerHTML = "Organisation";
+            cell1.innerHTML = "<b> First Name </b>";
+            cell2.innerHTML = "<b> Roll number </b>";
+            cell3.innerHTML = "<b> Email </b>";
+            cell4.innerHTML = "<b> Organisation </b>";
 
             for(let i=0;i<placed.length; i++)
             {
@@ -288,7 +181,7 @@ filter_form.addEventListener('submit', async (e) => {
         if(response['status'] === 500)
         {
             console.log("No Data!!");
-            ch_option.innerHTML = 'No placed students from this domain!!';
+            ch_option.innerHTML = '<b> Students of ' + op2 + ' domain are yet to be placed </b> <br> ';
             table.innerHTML = '';
             table2.innerHTML = '';
             p_alumni.innerHTML = '';
@@ -297,21 +190,20 @@ filter_form.addEventListener('submit', async (e) => {
             let placed = await response.json(); // read response body and parse as JSON
             console.log(response);
 
-            ch_option.innerHTML = 'Placed Students List <br> <br>';
+            ch_option.innerHTML = '<b> List of placed students from ' + op2 + ' domain are: </b> <br> ';
             //for (let i = 0; i < placed.length; i++) {
             //    ch_option.innerHTML += placed[i][0] + '&emsp;' + placed[i][1] + '&emsp;' + placed[i][2] + '&emsp;'+ placed[i][3] + '<br>';
             //}
-            let table = document.getElementById('results_table');
             table.innerHTML = '';
             let row = table.insertRow(0);
             let cell1 = row.insertCell(0);
             let cell2 = row.insertCell(1);
             let cell3 = row.insertCell(2);
             let cell4 = row.insertCell(3);
-            cell1.innerHTML = "First Name";
-            cell2.innerHTML = "Roll number";
-            cell3.innerHTML = "Email";
-            cell4.innerHTML = "Organisation";
+            cell1.innerHTML = "<b> First Name </b>";
+            cell2.innerHTML = "<b> Roll number </b>";
+            cell3.innerHTML = "<b> Email </b>";
+            cell4.innerHTML = "<b> Organisation </b>";
 
             for(let i=0;i<placed.length; i++)
             {
@@ -345,7 +237,7 @@ filter_form.addEventListener('submit', async (e) => {
         if(response['status'] === 500)
         {
             console.log("No Data!!");
-            ch_option.innerHTML = 'No placed students here!!';
+            ch_option.innerHTML = '<b> Students of ' + op2 + ' specialisation are yet to be placed </b> <br> ';
             table.innerHTML = '';
             table2.innerHTML = '';
             p_alumni.innerHTML = '';
@@ -354,22 +246,21 @@ filter_form.addEventListener('submit', async (e) => {
             let placed = await response.json(); // read response body and parse as JSON
             console.log(response);
 
-            ch_option.innerHTML = 'Placed Students List <br> <br>';
+            ch_option.innerHTML = '<b> List of placed students from ' + op2 + ' specialisation are: </b> <br> ';
             //for (let i = 0; i < placed.length; i++) {
             //    ch_option.innerHTML += placed[i][0] + '&emsp;' + placed[i][1] + '&emsp;' + placed[i][2] + '<br>';
             //}
 
-            let table = document.getElementById('results_table');
             table.innerHTML = '';
             let row = table.insertRow(0);
             let cell1 = row.insertCell(0);
             let cell2 = row.insertCell(1);
             let cell3 = row.insertCell(2);
             let cell4 = row.insertCell(3);
-            cell1.innerHTML = "First Name";
-            cell2.innerHTML = "Roll number";
-            cell3.innerHTML = "Email";
-            cell4.innerHTML = "Organisation";
+            cell1.innerHTML = "<b> First Name </b>";
+            cell2.innerHTML = "<b> Roll number </b>";
+            cell3.innerHTML = "<b> Email </b>";
+            cell4.innerHTML = "<b> Organisation </b>";
 
             for(let i=0;i<placed.length; i++)
             {
@@ -398,6 +289,54 @@ async function button_options(){
         document.getElementById("div-Year").style.display = "none";
         document.getElementById("div-Specialisation").style.display = "none";
 
+        let ch_option = document.getElementById('end_result');
+        let table = document.getElementById('results_table');
+        let table2 = document.getElementById('alumni_table');
+        let p_alumni = document.getElementById("alumni_p");
+
+        let response = await fetch("api/student/get_placed");
+        if(response['status'] === 500)
+        {
+            console.log("No Data!!");
+            ch_option.innerHTML = '<b> Students are yet to be placed!! </b>';
+
+            table.innerHTML = '';
+            table2.innerHTML = '';
+            p_alumni.innerHTML = '';
+        }
+        else {
+            let placed = await response.json(); // read response body and parse as JSON
+            console.log(placed);
+
+            ch_option.innerHTML = '<b> Placed Students List </b> <br>';
+            //for (let i = 0; i < placed.length; i++) {
+            //    ch_option.innerHTML += placed[i][0] + '&emsp;' + placed[i][1] + '&emsp;' + placed[i][2] + '<br>';
+            //}
+
+            table.innerHTML = '';
+            let row = table.insertRow(0);
+            let cell1 = row.insertCell(0);
+            let cell2 = row.insertCell(1);
+            let cell3 = row.insertCell(2);
+            let cell4 = row.insertCell(3);
+            cell1.innerHTML = "<b> First Name </b>";
+            cell2.innerHTML = "<b> Roll number </b>";
+            cell3.innerHTML = "<b> Email </b>";
+            cell4.innerHTML = "<b> Organisation </b>";
+
+            for(let i=0;i<placed.length; i++)
+            {
+                let row = table.insertRow(i+1);
+                for(let j=0;j<4;j++)
+                {
+                    let cell = row.insertCell(j);
+                    cell.innerHTML = placed[i][j];
+                }
+            }
+
+            table2.innerHTML = '';
+            p_alumni.innerHTML = '';
+        }
     }
     else if(chosen === 'Not Placed')
     {
@@ -405,6 +344,53 @@ async function button_options(){
         document.getElementById("div-Domain").style.display = "none";
         document.getElementById("div-Year").style.display = "none";
         document.getElementById("div-Specialisation").style.display = "none";
+
+
+        let ch_option = document.getElementById('end_result');
+        let table = document.getElementById('results_table');
+        let table2 = document.getElementById('alumni_table');
+        let p_alumni = document.getElementById("alumni_p");
+
+        let response = await fetch("api/student/get_not_placed");
+        if(response['status'] === 500)
+        {
+            console.log("No Data!!");
+            ch_option.innerHTML = ' <b> All are placed :D </b>';
+            let table = document.getElementById('results_table');
+            table.innerHTML = '';
+            table2.innerHTML = '';
+            p_alumni.innerHTML = '';
+        }
+        else {
+            let not_placed = await response.json(); // read response body and parse as JSON
+            console.log(not_placed);
+
+            ch_option.innerHTML = '<b> List of students who are yet to be placed are </b> <br>';
+            //for (let i = 0; i < not_placed.length; i++) {
+            //    ch_option.innerHTML += not_placed[i][0] + '&emsp;' + not_placed[i][1] + '&emsp;' + not_placed[i][2] + '<br>'
+            //}
+
+            table.innerHTML = '';
+            let row = table.insertRow(0);
+            let cell1 = row.insertCell(0);
+            let cell2 = row.insertCell(1);
+            let cell3 = row.insertCell(2);
+            cell1.innerHTML = "<b> First Name </b>";
+            cell2.innerHTML = "<b> Roll number </b>";
+            cell3.innerHTML = "<b> Email </b>";
+            for(let i=0;i<not_placed.length; i++)
+            {
+                let row = table.insertRow(i+1);
+                for(let j=0;j<3;j++)
+                {
+                    let cell = row.insertCell(j);
+                    cell.innerHTML = not_placed[i][j];
+                }
+            }
+
+            table2.innerHTML = '';
+            p_alumni.innerHTML = '';
+        }
     }
     else if(chosen === "Organisation")
     {
@@ -423,6 +409,7 @@ async function button_options(){
             ch_option.innerHTML += '<option value="'+options[i]+'">'+options[i]+'</option>';
         }
 
+        document.getElementById("for_button").style.display = "block";
     }
     else if(chosen === "Year")
     {
@@ -441,6 +428,7 @@ async function button_options(){
             ch_option.innerHTML += '<option value="'+options[i]+'">'+options[i]+'</option>';
         }
 
+        document.getElementById("for_button").style.display = "block";
     }
     else if(chosen === "Domain")
     {
@@ -459,6 +447,7 @@ async function button_options(){
             ch_option.innerHTML += '<option value="'+options[i]+'">'+options[i]+'</option>';
         }
 
+        document.getElementById("for_button").style.display = "block";
     }
     else
     {
@@ -476,8 +465,10 @@ async function button_options(){
         for(let i = 0 ; i<options.length ; i++){
             ch_option.innerHTML += '<option value="'+options[i]+'">'+options[i]+'</option>';
         }
+
+        document.getElementById("for_button").style.display = "block";
     }
-    document.getElementById("for_button").style.display = "block";
+
 }
 
 async function fetch_options(){
@@ -492,41 +483,38 @@ async function fetch_options(){
     }
 
     //----------------------------------------------------------------------------
-    let ch_option2 = document.getElementById('end_result');
-    let response2 = await fetch("api/student/display_all");
 
+    let opn2 = document.getElementById("end_result1");
+    let response2 = await fetch("api/student/display_all");
     if(response2['status'] === 500)
     {
         console.log("No Data!!");
-        ch_option2.innerHTML = 'No Students Data.';
+        opn2.innerHTML = 'No Students Data.';
     }
     else {
         let students = await response2.json(); // read response body and parse as JSON
         console.log(students);
 
-        ch_option2.innerHTML = 'Students List <br> <br>';
-        //for (let i = 0; i < students.length; i++) {
-        //    ch_option2.innerHTML += students[i][0] + '&emsp;' + students[i][1] + '&emsp;' + students[i][2] + '&emsp;' + students[i][3] + '&emsp;' + students[i][4] + '<br>';
-        //}
+        opn2.innerHTML = '<b> Students List</b> <br> <br>';
 
-        let table = document.getElementById('results_table');
-        let row = table.insertRow(0);
+        let table1 = document.getElementById('results_table1');
+        let row = table1.insertRow(0);
         let cell1 = row.insertCell(0);
         let cell2 = row.insertCell(1);
         let cell3 = row.insertCell(2);
         let cell4 = row.insertCell(3);
         let cell5 = row.insertCell(4);
-        cell1.innerHTML = "Roll Number"
-        cell2.innerHTML = "First Name";
-        cell3.innerHTML = "Last Name";
-        cell4.innerHTML = "Email";
-        cell5.innerHTML = "Placement Id";
+        let cell6 = row.insertCell(5);
+        cell1.innerHTML = "<b> Roll Number </b>"
+        cell2.innerHTML = "<b> First Name </b>";
+        cell3.innerHTML = "<b> Last Name </b> ";
+        cell4.innerHTML = "<b> Email </b>";
+        cell5.innerHTML = "<b> Specialisation </b>";
+        cell6.innerHTML = "<b> Placement Id </b>";
 
-        for(let i=0;i<students.length; i++)
-        {
-            let row = table.insertRow(i+1);
-            for(let j=0;j<5;j++)
-            {
+        for (let i = 0; i < students.length; i++) {
+            let row = table1.insertRow(i + 1);
+            for (let j = 0; j <6; j++) {
                 let cell = row.insertCell(j);
                 cell.innerHTML = students[i][j];
             }

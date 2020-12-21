@@ -22,11 +22,7 @@ public class orgController {
     public Response getOrganisations() {
         List<String> orgns = new ArrayList<>();
         orgns.add("Morgan Stanley");
-        orgns.add("Qualcomm");
-        orgns.add("Mathworks");
-        orgns.add("App Dynamics");
-        orgns.add("Nutanix");
-        orgns.add("Walmart Labs");
+        orgns.add("HP");
         orgns.add("Cisco");
         orgns.add("Microsoft");
         orgns.add("Flipkart");

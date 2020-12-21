@@ -27,8 +27,6 @@ public class employeeController {
         departments.add("IT");
         departments.add("Management");
         departments.add("Admission");
-        departments.add("Grievance");
-        departments.add("Counseller");
         departments.add("outreach");
         departments.add("Library");
         return Response.ok().entity(departments).build();

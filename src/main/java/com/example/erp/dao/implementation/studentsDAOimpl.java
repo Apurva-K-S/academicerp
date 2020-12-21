@@ -40,7 +40,7 @@ public class studentsDAOimpl implements studentsDAO {
 
             System.out.println("Inside studentsDAOimpl.java");
 
-            Query query = session.createQuery("select roll_number, first_name, last_name, email, placement_id from students");
+            Query query = session.createQuery("select roll_number, first_name, last_name, email, specialisation, placement_id from students");
 
             listResult = query.list();
 
