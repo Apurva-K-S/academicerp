@@ -27,42 +27,82 @@ filter_form.addEventListener('submit', async (e) => {
     if(op1 === 'Placed')
     {
         let response = await fetch("api/student/get_placed");
-        let placed = await response.json(); // read response body and parse as JSON
-        console.log(placed);
-        //let courses_option = document.getElementById('courses');
-        //courses_option.innerHTML = '<option value=""> Choose...</option>';
-        //ch_option.innerHTML = '<table style="width:100%"> <tbody>';
 
-        ch_option.innerHTML = 'Placed Students List <br> <br>';
-        for (let i = 0; i < placed.length; i++) {
+        if(response['status'] === 500)
+        {
+            console.log("No Data!!");
+            ch_option.innerHTML = 'No placed students here!!';
+        }
+        else {
+            let placed = await response.json(); // read response body and parse as JSON
+            console.log(placed);
+            //let courses_option = document.getElementById('courses');
+            //courses_option.innerHTML = '<option value=""> Choose...</option>';
+            //ch_option.innerHTML = '<table style="width:100%"> <tbody>';
+
+            ch_option.innerHTML = 'Placed Students List <br> <br>';
+            for (let i = 0; i < placed.length; i++) {
                 //ch_option.innerHTML += '<tr> <td>'+placed[i]['id'] +'</td> <td>'+placed[i]['roll_number'] +'</td> <td>'+placed[i]['first_name'] +'</td> <td>'+placed[i]['email'] +'</td></tr>';
                 //ch_option.innerHTML += placed[i]['first_name'] + '&emsp;' + placed[i]['id'];
                 //+ '&emsp;' +placed[i]['first_name'] + '&emsp;' + placed[i]['email'] + '<br>';
 
                 //for(let j=0; j<placed[i].length; j++){
-            ch_option.innerHTML += placed[i][0] + '&emsp;' + placed[i][1] + '&emsp;' + placed[i][2] + '<br>';
+                ch_option.innerHTML += placed[i][0] + '&emsp;' + placed[i][1] + '&emsp;' + placed[i][2] + '<br>';
                 //}
-        }
+            }
             // ch_option.innerHTML += '</tbody> </table>';
+        }
     }
     else if(op1 === 'Not Placed')
     {
         let response = await fetch("api/student/get_not_placed");
-        let not_placed = await response.json(); // read response body and parse as JSON
-        console.log(not_placed);
 
-        ch_option.innerHTML = 'Not Placed Students List <br> <br>';
-        for (let i = 0; i < not_placed.length; i++) {
-            ch_option.innerHTML += not_placed[i][0] + '&emsp;' + not_placed[i][1] + '&emsp;' + not_placed[i][2] + '<br>'
+        if(response['status'] === 500)
+        {
+            console.log("No Data!!");
+            ch_option.innerHTML = 'No placed students here!!';
+        }
+        else {
+            let not_placed = await response.json(); // read response body and parse as JSON
+            console.log(not_placed);
+
+            ch_option.innerHTML = 'Not Placed Students List <br> <br>';
+            for (let i = 0; i < not_placed.length; i++) {
+                ch_option.innerHTML += not_placed[i][0] + '&emsp;' + not_placed[i][1] + '&emsp;' + not_placed[i][2] + '<br>'
+            }
         }
     }
     else if(op1 === 'Organisation')
     {
 
-        // here organisations part will come.
-
-        // this is alumni part.
         let op2 = document.getElementById('org').value;
+        // here organisations part will come.
+        let response2 = await fetch("api/student/by_org", {
+            method: 'POST',
+            headers:{
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify({
+                name: op2,
+            })
+        });
+        if(response2['status'] === 500)
+        {
+            console.log("current students empty!!");
+            ch_option.innerHTML = 'Current Students are not yet placed in this organisation';
+        }
+        else{
+            let placed2 = await response2.json(); // read response body and parse as JSON
+            console.log(placed2);
+
+
+            ch_option.innerHTML = 'Current Placed Students List <br> <br>';
+            for (let i = 0; i < placed2.length; i++) {
+                ch_option.innerHTML += placed2[i][0] + '&emsp;' + placed2[i][1] + '&emsp;' + placed2[i][2] + '&emsp;' + placed2[i][3] + '<br>';
+            }
+        }
+        ch_option.innerHTML += '<br> <br>';
+        // this is alumni part.
         let response = await fetch("api/almorg/get_alumni",{
         method: 'POST',
             headers: {
@@ -72,22 +112,78 @@ filter_form.addEventListener('submit', async (e) => {
                 name: op2,
             })
         });
-        let placed = await response.json(); // read response body and parse as JSON
-        console.log(placed);
+
+        if(response['status'] === 500)
+        {
+            console.log("No Data!!");
+            ch_option.innerHTML += 'No Alumni here!!';
+        }
+        else {
+            let placed = await response.json(); // read response body and parse as JSON
+            console.log(placed);
 
 
-        ch_option.innerHTML = 'Placed Students List <br> <br>';
-        for (let i = 0; i < placed.length; i++) {
-            ch_option.innerHTML += placed[i][0] + '&emsp;' + placed[i][1] + '&emsp;' + placed[i][2] + '&emsp;' + placed[i][3] + '<br>';
+            ch_option.innerHTML += 'Alumni List <br> <br>';
+            for (let i = 0; i < placed.length; i++) {
+                ch_option.innerHTML += placed[i][0] + '&emsp;' + placed[i][1] + '&emsp;' + placed[i][2] + '&emsp;' + placed[i][3] + '<br>';
+            }
         }
     }
     else if(op1 === 'Year')
     {
         op2 = document.getElementById('year').value;
+
+        let response = await fetch("api/student/by_year",{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: op2
+        });
+
+        if(response['status'] === 500)
+        {
+            console.log("No Data!!");
+            ch_option.innerHTML = 'No placed students from this year!!';
+        }
+        else {
+            let placed = await response.json(); // read response body and parse as JSON
+            console.log(response);
+
+            ch_option.innerHTML = 'Placed Students List <br> <br>';
+            for (let i = 0; i < placed.length; i++) {
+                ch_option.innerHTML += placed[i][0] + '&emsp;' + placed[i][1] + '&emsp;' + placed[i][2] + '&emsp;'+ placed[i][3] + '<br>';
+            }
+        }
+
     }
     else if(op1 === 'Domain')
     {
         op2 = document.getElementById('domain').value;
+
+        let response = await fetch("api/student/by_domain",{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: op2
+        });
+
+        if(response['status'] === 500)
+        {
+            console.log("No Data!!");
+            ch_option.innerHTML = 'No placed students from this domain!!';
+        }
+        else {
+            let placed = await response.json(); // read response body and parse as JSON
+            console.log(response);
+
+            ch_option.innerHTML = 'Placed Students List <br> <br>';
+            for (let i = 0; i < placed.length; i++) {
+                ch_option.innerHTML += placed[i][0] + '&emsp;' + placed[i][1] + '&emsp;' + placed[i][2] + '&emsp;'+ placed[i][3] + '<br>';
+            }
+        }
+
     }
     else
     {
@@ -103,12 +199,19 @@ filter_form.addEventListener('submit', async (e) => {
             })
         });
 
-        let placed = await response.json(); // read response body and parse as JSON
-        console.log(response);
+        if(response['status'] === 500)
+        {
+            console.log("No Data!!");
+            ch_option.innerHTML = 'No placed students here!!';
+        }
+        else {
+            let placed = await response.json(); // read response body and parse as JSON
+            console.log(response);
 
-        ch_option.innerHTML = 'Placed Students List <br> <br>';
-        for (let i = 0; i < placed.length; i++) {
-            ch_option.innerHTML += placed[i][0] + '&emsp;' + placed[i][1] + '&emsp;' + placed[i][2] + '<br>';
+            ch_option.innerHTML = 'Placed Students List <br> <br>';
+            for (let i = 0; i < placed.length; i++) {
+                ch_option.innerHTML += placed[i][0] + '&emsp;' + placed[i][1] + '&emsp;' + placed[i][2] + '<br>';
+            }
         }
     }
 });
@@ -217,25 +320,25 @@ async function fetch_options(){
         ch_option.innerHTML += '<option value="'+options[i]+'">'+options[i]+'</option>';
     }
 
-    /*let response2 = await fetch('api/student/displayall');
 
-    let result = await response2;
-    console.log(response2);
-    let placeholder = document.getElementById("all");
+    //----------------------------------------------------------------------------
+    let ch_option2 = document.getElementById('end_result');
+    let response2 = await fetch("api/student/display_all");
 
-    placeholder.innerHTML += '<br>';
-
-    if(result['status'] === 200)
+    if(response2['status'] === 500)
     {
-        let data = response2.json();
-        console.log(data);
-        placeholder.innerHTML += data['id'] + '<br>' + data['first_name'] + '<br>';
+        console.log("No Data!!");
+        ch_option2.innerHTML = 'No Students Data.';
     }
-    else
-    {
-        placeholder.innerHTML += 'No students to display';
-    }*/
+    else {
+        let students = await response2.json(); // read response body and parse as JSON
+        console.log(students);
 
+        ch_option2.innerHTML = 'Students List <br> <br>';
+        for (let i = 0; i < students.length; i++) {
+            ch_option2.innerHTML += students[i][0] + '&emsp;' + students[i][1] + '&emsp;' + students[i][2] + '&emsp;' + students[i][3] + '&emsp;' + students[i][4] + '<br>';
+        }
+    }
 }
 
 async function go_to_display_page(){
