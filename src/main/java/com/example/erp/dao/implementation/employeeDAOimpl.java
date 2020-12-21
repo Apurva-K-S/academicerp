@@ -11,13 +11,14 @@ import org.hibernate.query.Query;
 public class employeeDAOimpl implements employeeDAO {
 
     @Override
-    public boolean emailVerify(employee student) {
+    public boolean emailVerify(employee emp) {
         Session session = SessionUtils.getSession();
         try {
-            if(student.getDepartment().equals("outreach")) {
-                Query query = session.createQuery("from employee where email=:email and department=: dept ");
-                query.setParameter("email", student.getEmail());
-                query.setParameter("dept", student.getDepartment());
+            if(emp.getDepartment().equals("outreach")) {
+                Query query = session.createQuery("from employee where email=:email and first_name =: first_name and department=: dept ");
+                query.setParameter("first_name", emp.getFirst_name());
+                query.setParameter("email", emp.getEmail());
+                query.setParameter("dept", emp.getDepartment());
                 if (query.getResultList().size() == 1) {
                     return true;
                 }

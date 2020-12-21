@@ -36,6 +36,7 @@ login_form.addEventListener('submit', async (e) => {
                 'Content-Type': 'application/json;charset=utf-8'
             },
             body: JSON.stringify({
+                first_name: document.getElementById('first_name').value,
                 email: document.getElementById('email').value,
                 department: document.getElementById("departments").value,
             })

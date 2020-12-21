@@ -73,8 +73,11 @@ public class studentsDAOimpl implements studentsDAO {
             //Query query = session.createQuery("select distinct s.first_name, s.id, p.org from students as s, placement_student as ps, placement as p " +
             //        "inner join ps.plcmnt where s.placement_id = ps.id and ps.acceptance like 'ACCEPT' and s.placement_id  is not null order by s.id");
 
-            Query query = session.createQuery("select distinct students.first_name, students.roll_number, organisations.name from placement_student as ps inner join ps.stds students, placement_student as ps1 inner join ps1.plcmnt placement inner join placement.org organisations" +
-                    " where students.placement_id = ps.id and ps.id = ps1.id and ps.acceptance = 'ACCEPT' and students.placement_id  is not null order by students.roll_number");
+            //Query query = session.createQuery("select distinct students.first_name, students.roll_number, students.email, organisations.name from placement_student as ps inner join ps.stds students, placement_student as ps1 inner join ps1.plcmnt placement inner join placement.org organisations" +
+            //        " where students.placement_id = ps.id and ps.id = ps1.id and ps.acceptance = 'ACCEPT' and students.placement_id  is not null order by students.roll_number");
+
+            Query query = session.createQuery("select distinct students.first_name, students.roll_number, students.email, organisations.name from placement_student as ps inner join ps.stds students, placement_student as ps1 inner join ps1.plcmnt placement inner join placement.org organisations" +
+                    " where students.placement_id = ps.id and ps.id = ps1.id and ps.acceptance = 'ACCEPT' and students.placement_id is not null order by students.roll_number");
 
             listResult = query.list();
             /*for(Object[] aRow : listResult){
@@ -134,7 +137,7 @@ public class studentsDAOimpl implements studentsDAO {
 
             System.out.println("\n choosen spl is " + st.getSpecialisation());
 
-            Query query = session.createQuery("select distinct students.first_name, students.roll_number, organisations.name from placement_student as ps inner join ps.stds students, placement_student as ps1 inner join ps1.plcmnt placement inner join placement.org organisations" +
+            Query query = session.createQuery("select distinct students.first_name, students.roll_number, students.email, organisations.name from placement_student as ps inner join ps.stds students, placement_student as ps1 inner join ps1.plcmnt placement inner join placement.org organisations" +
                     " where students.placement_id = ps.id and ps.id = ps1.id and ps.acceptance = 'ACCEPT' and students.placement_id is not null and students.specialisation =: spl order by students.roll_number");
 
             query.setParameter("spl", st.getSpecialisation());
