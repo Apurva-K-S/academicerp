@@ -25,11 +25,12 @@
         .tg1{
             color: #000000;
             font-size: large;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
+            margin-top: 70px;
         }
         .tg2{
             margin-bottom: 30px;
-            margin-top: 5px;
+            margin-top: 10px;
             box-shadow: 2px 2px 5px #5a6268;
         }
         .tg3{
@@ -37,11 +38,11 @@
             margin-top: 10px;
             width: 150px;
             height: 50px;
+            box-shadow: 2px 2px 5px #5a6268;
         }
         ::placeholder{
             color: #000000;
         }
-
     </style>
 </head>
 
@@ -53,13 +54,14 @@
         <h2 style="margin-top: 25px; color: #000000;" class="text-center"> <b> Placement History </b> </h2>
     </div>
 
+    <p id="end_result1" class="tg1">
+    <table class="table table-striped table-hover tg2" id="results_table1">
+    </table>
+    </p>
+</div>
+
+<div class="container modal-content" style="margin-top: 70px">
     <form class="needs-validation-students" id="form-validation" novalidate>
-
-        <p id="end_result1" class="tg1">
-            <table class="table table-striped table-hover tg2" id="results_table1">
-            </table>
-        </p>
-
         <div class="mb-3" id="div-choices">
             <label for="options" class="tg1"> <b> Filter Students based on: </b> </label>
             <select class="custom-select d-block w-100 tg2" id="options" required>
@@ -70,12 +72,10 @@
             </div>
         </div>
 
-        <button class="btn btn-lg btn-primary btn-block tg2" id="button1" type="button" onclick="button_options()">
+        <button class="btn btn-lg btn-primary btn-block tg3 float-right" id="button1" type="button" onclick="button_options()">
             Go
         </button>
 
-        <br>
-        <br>
         <div class="mb-3" style="display:none"  id="div-Organisation" >
             <label for="options" class="tg1"> <b> Choose an Organisation </b> </label>
             <select class="custom-select d-block w-100 tg2" id="org" required>
@@ -118,24 +118,21 @@
         </div>
 
         <div class="mb-3" style="display:none" id="for_button">
-            <button class="btn btn-lg btn-primary btn-block tg2" id="button2" type="submit">
+            <button class="btn btn-lg btn-primary btn-block tg3 float-right" id="button2" type="submit">
                 filter
             </button>
         </div>
 
-        <br>
-        <br>
-
         <!-- it should be here-->
-        <p id="end_result" class="tg1">
-        <table class="table table-striped table-hover tg2" id="results_table">
-        </table>
+        <p id="end_result" class="tg1" style="margin-top: 90px">
+            <table class="table table-striped table-hover tg2" style="margin-top: 30px" id="results_table">
+            </table>
 
-        <p id="alumni_p" class="tg1">
-        </p>
+            <p id="alumni_p" class="tg1" style="margin-top: 30px">
+            </p>
 
-        <table class="table table-striped table-hover tg2" id="alumni_table">
-        </table>
+            <table class="table table-striped table-hover tg2" id="alumni_table">
+            </table>
         </p>
 
     </form>

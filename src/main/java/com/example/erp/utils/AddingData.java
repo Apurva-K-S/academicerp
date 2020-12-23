@@ -19,7 +19,6 @@ public class AddingData {
         employee emp2 = new employee(3, "emp3", "emp3", "emp3@iiitb.org", "professor", "Maintenance");
         employeeService.addEmployee(emp2);
 
-
         orgService orgService = new orgService();
 
         organisations o1 = new organisations(1, "Microsoft", "Bangalore");

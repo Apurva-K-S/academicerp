@@ -333,10 +333,10 @@ async function button_options(){
                     cell.innerHTML = placed[i][j];
                 }
             }
-
             table2.innerHTML = '';
             p_alumni.innerHTML = '';
         }
+        document.getElementById("for_button").style.display = "none";
     }
     else if(chosen === 'Not Placed')
     {
@@ -391,6 +391,7 @@ async function button_options(){
             table2.innerHTML = '';
             p_alumni.innerHTML = '';
         }
+        document.getElementById("for_button").style.display = "none";
     }
     else if(chosen === "Organisation")
     {
