@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Students - Courses</title>
+    <title>Filter students</title>
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/form-validation.css" rel="stylesheet">
-
+    <script src="https://use.fontawesome.com/releases/v5.7.0/js/all.js"></script>
     <style>
         .modal-content{
             background-color: #ffffff;
@@ -13,7 +13,7 @@
             padding:0 20px;
             box-shadow: 2px 2px 5px #1b1e21;
             margin: 0 auto;
-            margin-top: 200px;
+            margin-top: 120px;
         }
         .img{
             margin-top: -80px;
@@ -26,7 +26,7 @@
             color: #000000;
             font-size: large;
             margin-bottom: 10px;
-            margin-top: 70px;
+            margin-top: 30px;
         }
         .tg2{
             margin-bottom: 30px;
@@ -39,14 +39,29 @@
             width: 150px;
             height: 50px;
             box-shadow: 2px 2px 5px #5a6268;
+            border-radius: 10px;
         }
         ::placeholder{
             color: #000000;
+        }
+        .logout_button{
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            width: 150px;
+            height: 50px;
+            box-shadow: 2px 2px 5px #5a6268;
+            border-radius: 10px;
         }
     </style>
 </head>
 
 <body class="bg-light">
+
+<form>
+    <button id="logout_button" class="logout_button btn btn-block btn-lg btn-primary" type="button" onclick="location.href='index.html';"><i class="fas fa-sign-out-alt"></i>
+        Logout</button>
+</form>
 
 <div class="container modal-content">
     <div class="py-5 text-center">
@@ -55,8 +70,8 @@
     </div>
 
     <p id="end_result1" class="tg1">
-    <table class="table table-striped table-hover tg2" id="results_table1">
-    </table>
+        <table class="table table-striped table-hover tg2" id="results_table1">
+        </table>
     </p>
 </div>
 
@@ -133,14 +148,13 @@
 
             <table class="table table-striped table-hover tg2" id="alumni_table">
             </table>
-        </p>
 
     </form>
-
 </div>
 <footer class="my-5 pt-5 text-muted text-center text-small">
 </footer>
 </body>
+
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
 <script src="assets/js/form-validation.js"></script>

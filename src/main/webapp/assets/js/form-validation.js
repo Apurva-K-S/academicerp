@@ -522,29 +522,3 @@ async function fetch_options(){
         }
     }
 }
-
-async function go_to_display_page(){
-
-    let chosen = document.getElementById('options').value;
-
-    if(chosen === "Organisation")
-    {
-
-
-    }
-    else if(chosen === "Year")
-    {
-
-
-    }
-    else if(chosen === "Domain")
-    {
-
-
-    }
-    else
-    {
-
-    }
-    document.getElementById("for_button").style.display = "block";
-}
