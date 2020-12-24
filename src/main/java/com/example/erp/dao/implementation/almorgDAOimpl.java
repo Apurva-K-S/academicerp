@@ -11,6 +11,10 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class almorgDAOimpl implements almorgDAO {
@@ -55,9 +59,21 @@ public class almorgDAOimpl implements almorgDAO {
             //        "inner join ao.org order by o.name");
 
             //System.out.println("\n choosen org is " + org.getName());
-            Query query = session.createQuery("select distinct ao.alumni_name, ao.alumni_email, ao.joining_date, organisations.name from alumni_organisation as ao inner join ao.org organisations" +
-                    " where organisations.name =: name order by ao.alumni_name");
+
+            String pattern = "yyyy-MM-dd";
+            DateFormat df = new SimpleDateFormat(pattern);
+
+            Date today = Calendar.getInstance().getTime();
+            String todayAsString = df.format(today);
+
+            System.out.println("------------Today is: ------- " + todayAsString);
+
+            //String d="2018-12-08";
+            Query query = session.createQuery("select distinct ao.alumni_name, ao.alumni_email, ao.joining_date, ao.leaving_date, organisations.name from alumni_organisation as ao inner join ao.org organisations" +
+                    " where organisations.name =: name and (ao.leaving_date is null or ao.leaving_date >= :dat) order by ao.alumni_name");
+
             query.setParameter("name", org.getName());
+            query.setParameter("dat", todayAsString);
 
             listResult = query.list();
             /*for(Object[] aRow : listResult){

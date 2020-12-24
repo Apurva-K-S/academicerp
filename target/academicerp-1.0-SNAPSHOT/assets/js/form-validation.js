@@ -97,15 +97,17 @@ filter_form.addEventListener('submit', async (e) => {
             let cell2 = row.insertCell(1);
             let cell3 = row.insertCell(2);
             let cell4 = row.insertCell(3);
+            let cell5 = row.insertCell(4);
             cell1.innerHTML = "<b> Alumni Name </b>";
             cell2.innerHTML = "<b> Alumni Email </b>";
             cell3.innerHTML = "<b> Joining Date </b>";
-            cell4.innerHTML = "<b> Organisation Name </b>";
+            cell4.innerHTML = "<b> Leaving Date </b>";
+            cell5.innerHTML = "<b> Organisation Name </b>";
 
             for(let i=0;i<placed.length; i++)
             {
                 let row = table2.insertRow(i+1);
-                for(let j=0;j<4;j++)
+                for(let j=0;j<5;j++)
                 {
                     let cell = row.insertCell(j);
                     cell.innerHTML = placed[i][j];

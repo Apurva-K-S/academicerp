@@ -33,14 +33,17 @@ public class AddingData {
 
         alumni_organisationService alorgService = new alumni_organisationService();
 
-        alumni_organisation ao1 = new alumni_organisation(1, o1, "light", "l@xyz.com", "sde2", "08-12-2017", "");
+        alumni_organisation ao1 = new alumni_organisation(1, o1, "light", "l@xyz.com", "sde2", "2017-12-08", "2020-12-12");
         alorgService.addAlumOrg(ao1);
-        alumni_organisation ao2 = new alumni_organisation(2, o1, "lelouch", "le@xyz.com", "research engg", "08-12-2018","");
+        alumni_organisation ao2 = new alumni_organisation(2, o1, "lelouch", "le@xyz.com", "research engg", "2018-12-08","2022-12-12");
         alorgService.addAlumOrg(ao2);
-        alumni_organisation ao3 = new alumni_organisation(3, o3, "Ryuk", "r@xyz.com", "sde3","08-12-2018", "");
+        alumni_organisation ao3 = new alumni_organisation(3, o3, "Ryuk", "r@xyz.com", "sde3","2018-12-08", "2023-12-12");
         alorgService.addAlumOrg(ao3);
-        alumni_organisation ao4 = new alumni_organisation(4, o4, "Edward", "e@xyz.com", "manager","08-08-2018", "");
+        alumni_organisation ao4 = new alumni_organisation(4, o4, "Edward", "e@xyz.com", "manager","2018-08-08", "2022-03-20");
         alorgService.addAlumOrg(ao4);
+        alumni_organisation ao5 = new alumni_organisation(5, o2, "Jim", "J@xyz.com", "manager","2021-01-12", "2024-03-20");
+        alorgService.addAlumOrg(ao5);
+
 
         placementService placementService = new placementService();
         placement p1 = new placement(1, o1, "sde", "software development engineer", 10, 2.8 );

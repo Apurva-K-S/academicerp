@@ -70,5 +70,5 @@ async function fetch_department(){
         dep_option.innerHTML += '<option value="'+departments[i]+'">'+departments[i]+'</option>';
     }
 
-    //let response2 = await fetch("api/employee/add", {method: 'POST'}); -> remove this if u want to create tables and load data into files.
+    //let response2 = await fetch("api/employee/add", {method: 'POST'}); //-> remove this if u want to create tables and load data into files.
 }
