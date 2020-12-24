@@ -185,7 +185,6 @@ public class studentsDAOimpl implements studentsDAO {
             System.out.println("size of result: " + listResult.get(0)[1]);
             System.out.println("size of result: " + listResult.get(0)[2]);
 
-
             return listResult;
 
         } catch (HibernateException exception) {

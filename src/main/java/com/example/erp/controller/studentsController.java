@@ -91,6 +91,7 @@ public class studentsController {
     @Path("/by_org")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getStudentsByOrg(organisations org) {
+        //System.out.println(org.getName() + "    " + org.getId() + "    " + org.getAddress());
         List<Object[]> courses = studentsService.getStudentsByOrg(org);
         return Response.ok().entity(courses).build();
     }

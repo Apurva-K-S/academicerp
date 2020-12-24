@@ -6,11 +6,11 @@ filter_form.addEventListener('submit', async (e) => {
   e.stopPropagation();
 
     let op1 = document.getElementById('options').value;
+
     let ch_option = document.getElementById('end_result');
     let table = document.getElementById('results_table');
     let table2 = document.getElementById('alumni_table');
     let p_alumni = document.getElementById("alumni_p");
-
 
     if(op1 === 'Organisation')
     {
