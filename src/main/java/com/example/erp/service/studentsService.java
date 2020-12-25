@@ -38,8 +38,5 @@ public class studentsService {
     public List<Object[]> getStudentsByYear (String yr){ return studentsDAO.getStudentsByYear(yr); }
 
     public List<Object[]> getStudentsByDomain (String dmn){ return studentsDAO.getStudentsByDomain(dmn); }
-    //public List<students> getAll(){
-    //    return studentsDAO.getAll();
-    //}
 
 }

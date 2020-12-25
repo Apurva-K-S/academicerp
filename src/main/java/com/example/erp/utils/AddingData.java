@@ -33,15 +33,15 @@ public class AddingData {
 
         alumni_organisationService alorgService = new alumni_organisationService();
 
-        alumni_organisation ao1 = new alumni_organisation(1, o1, "light", "l@xyz.com", "sde2", "2017-12-08", "2020-12-12");
+        alumni_organisation ao1 = new alumni_organisation(1, o1, "alumni1", "al1@xyz.com", "sde2", "2017-12-08", "2020-12-12");
         alorgService.addAlumOrg(ao1);
-        alumni_organisation ao2 = new alumni_organisation(2, o1, "lelouch", "le@xyz.com", "research engg", "2018-12-08","2022-12-12");
+        alumni_organisation ao2 = new alumni_organisation(2, o1, "alumni2", "al2@xyz.com", "research engg", "2018-12-08","2022-12-12");
         alorgService.addAlumOrg(ao2);
-        alumni_organisation ao3 = new alumni_organisation(3, o3, "Ryuk", "r@xyz.com", "sde3","2018-12-08", "2023-12-12");
+        alumni_organisation ao3 = new alumni_organisation(3, o3, "alumni3", "al3@xyz.com", "sde3","2018-12-08", "2023-12-12");
         alorgService.addAlumOrg(ao3);
-        alumni_organisation ao4 = new alumni_organisation(4, o4, "Edward", "e@xyz.com", "manager","2018-08-08", "2022-03-20");
+        alumni_organisation ao4 = new alumni_organisation(4, o4, "alumni4", "al4@xyz.com", "manager","2018-08-08", "2022-03-20");
         alorgService.addAlumOrg(ao4);
-        alumni_organisation ao5 = new alumni_organisation(5, o2, "Jim", "J@xyz.com", "manager","2021-01-12", "2024-03-20");
+        alumni_organisation ao5 = new alumni_organisation(5, o2, "alumni5", "al5@xyz.com", "manager","2021-01-12", "2024-03-20");
         alorgService.addAlumOrg(ao5);
 
 
@@ -62,15 +62,15 @@ public class AddingData {
 
         studentsService studentsService = new studentsService();
 
-        students s1 = new students(1, "MT2020001", "Clark", "M", "c@iiitb.org", "AIML", 1);
+        students s1 = new students(1, "MT2020001", "student1", "s1", "student1@iiitb.org", "AIML", 1);
         studentsService.addStudent(s1);
-        students s2 = new students(2, "MT2020002", "Bruce", "W", "b@iiitb.org", "NC", 6);
+        students s2 = new students(2, "MT2020002", "student2", "s2", "student2@iiitb.org", "NC", 6);
         studentsService.addStudent(s2);
-        students s3 = new students(3, "MT2020003", "Diana", "T", "d@iiitb.org", "VLSI", 4);
+        students s3 = new students(3, "MT2020003", "student3", "s3", "student3@iiitb.org", "VLSI", 4);
         studentsService.addStudent(s3);
-        students s4 = new students(4, "MT2020004", "Jon", "P", "J@iiitb.org", "TSCD", null);
+        students s4 = new students(4, "MT2020004", "student4", "s4", "student4@iiitb.org", "TSCD", null);
         studentsService.addStudent(s4);
-        students s5 = new students(5, "MT2020005", "Barry", "R", "br@iiitb.org", "AIML", 8);
+        students s5 = new students(5, "MT2020005", "student5", "s5", "student5@iiitb.org", "AIML", 8);
         studentsService.addStudent(s5);
 
         placStudService placStudService = new placStudService();

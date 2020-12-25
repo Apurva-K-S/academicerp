@@ -7,8 +7,6 @@ import java.io.Serializable;
 @Table(name = "students")
 public class students implements Serializable {
 
-
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name="id", nullable = false, unique = true)
     private Integer id;
@@ -28,10 +26,6 @@ public class students implements Serializable {
 
     @Column(name="specialisation")
     private String specialisation;
-
-    //@OneToOne
-    //@JoinColumn(name="placement_id")
-    //private placement_student plstds;
 
     private Integer placement_id; // maps to "id" field of placement_student;
 
@@ -90,14 +84,6 @@ public class students implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    //public String getDomain() {
-    //    return domain;
-    //}
-
-    //public void setDomain(String domain) {
-    //    this.domain = domain;
-    //}
 
     public String getSpecialisation() {
         return specialisation;

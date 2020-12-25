@@ -1,29 +1,6 @@
 let login_form = document.getElementById('login-validation');
 window.onload = fetch_department;
 
-/*login_form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (login_form.checkValidity() === true) {
-        let response = await fetch('api/employee/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json;charset=utf-8'
-            },
-            body: JSON.stringify({
-                email: document.getElementById('email').value,
-                department: document.getElementById("departments").value,
-            })
-        });
-        let result = await response;
-        if(result["status"]===200){
-            location.href = "dashboard.html";
-        }else{
-            document.getElementById("login-alert").style.display = "block";
-        }
-    }
-});*/
-
 login_form.addEventListener('submit', async (e) => {
     e.preventDefault();
     e.stopPropagation();

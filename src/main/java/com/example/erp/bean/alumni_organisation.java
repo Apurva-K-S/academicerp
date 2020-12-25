@@ -8,7 +8,6 @@ import java.util.Date;
 @Table(name = "alumni_organisation")
 public class alumni_organisation implements Serializable {
 
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name="id", nullable = false, unique = true)
     private Integer id;
@@ -54,14 +53,6 @@ public class alumni_organisation implements Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-
-    //public Integer getOrganisation() {
-    //    return organisation;
-   // }
-
-    //public void setOrganisation(Integer organisation) {
-    //    this.organisation = organisation;
-    //}
 
     public String getAlumni_name() {
         return alumni_name;

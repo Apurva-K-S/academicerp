@@ -43,15 +43,11 @@ public class employeeDAOimpl implements employeeDAO {
         try {
             Transaction transaction = session.beginTransaction();
 
-            //public employee(String first_name, String last_name, String email, String title, String department) {
-            //employee emp = new employee(5,"emp5","emp5","emp5@iiitb.org","head","Counseller");
-
             session.save(emp);
             transaction.commit();
-            //return true;
         } catch (HibernateException exception) {
             System.out.print(exception.getLocalizedMessage());
-            //return false;
+
         }finally {
             session.close();
         }

@@ -19,9 +19,6 @@ public class placStudDAOimpl implements placStudDAO {
         try {
             Transaction transaction = session.beginTransaction();
 
-            //public employee(String first_name, String last_name, String email, String title, String department) {
-            //employee emp = new employee(5,"emp5","emp5","emp5@iiitb.org","head","Counseller");
-
             session.save(ps);
             transaction.commit();
             //return true;

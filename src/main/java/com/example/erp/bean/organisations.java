@@ -8,7 +8,6 @@ import java.io.Serializable;
 @Table(name = "organization")
 public class organisations implements Serializable {
 
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name="id", nullable = false, unique = true)
     private Integer id;  // maps to "organisation" field of placement and to "organisation" field of Alumni_organisation.

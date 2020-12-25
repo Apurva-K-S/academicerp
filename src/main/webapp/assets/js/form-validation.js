@@ -1,5 +1,5 @@
 let filter_form = document.getElementById('form-validation');
-window.onload = fetch_options;
+window.onload = fetch_options;  // -> this
 
 filter_form.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -7,7 +7,7 @@ filter_form.addEventListener('submit', async (e) => {
 
     let op1 = document.getElementById('options').value;
 
-    let ch_option = document.getElementById('end_result');
+    let p_tag1 = document.getElementById('end_result');
     let table = document.getElementById('results_table');
     let table2 = document.getElementById('alumni_table');
     let p_alumni = document.getElementById("alumni_p");
@@ -29,7 +29,7 @@ filter_form.addEventListener('submit', async (e) => {
         if(response2['status'] === 500)
         {
             console.log("current students empty!!");
-            ch_option.innerHTML = '<b> No Students placed in ' + op2 + ' yet </b>';
+            p_tag1.innerHTML = '<b> No Students placed in ' + op2 + ' yet </b>';
             let table = document.getElementById('results_table');
             table.innerHTML = '';
         }
@@ -37,10 +37,7 @@ filter_form.addEventListener('submit', async (e) => {
             let placed2 = await response2.json(); // read response body and parse as JSON
             console.log(placed2);
 
-            ch_option.innerHTML = '<b> Students placed in ' + op2 + ' are: </b> <br>';
-            //for (let i = 0; i < placed2.length; i++) {
-            //    ch_option.innerHTML += placed2[i][0] + '&emsp;' + placed2[i][1] + '&emsp;' + placed2[i][2] + '&emsp;' + placed2[i][3] + '<br>';
-            //}
+            p_tag1.innerHTML = '<b> Students placed in ' + op2 + ' are: </b> <br>';
 
             table.innerHTML = '';
             let row = table.insertRow(0);
@@ -64,7 +61,7 @@ filter_form.addEventListener('submit', async (e) => {
         }
 
         // this is alumni part.
-        let p_alumni = document.getElementById('alumni_p');
+        //let p_alumni = document.getElementById('alumni_p');
         let response = await fetch("api/almorg/get_alumni",{
         method: 'POST',
             headers: {
@@ -85,10 +82,7 @@ filter_form.addEventListener('submit', async (e) => {
             let placed = await response.json(); // read response body and parse as JSON
             console.log(placed);
 
-            p_alumni.innerHTML = '<b> Alumni from ' + op2 + ' are </b> <br> <br>';
-            //for (let i = 0; i < placed.length; i++) {
-            //    ch_option.innerHTML += placed[i][0] + '&emsp;' + placed[i][1] + '&emsp;' + placed[i][2] + '&emsp;' + placed[i][3] + '<br>';
-            //}
+            p_alumni.innerHTML = '<b> Alumni from ' + op2 + ' are </b> <br>';
 
             let table2 = document.getElementById('alumni_table');
             table2.innerHTML = '';
@@ -130,7 +124,7 @@ filter_form.addEventListener('submit', async (e) => {
         if(response['status'] === 500)
         {
             console.log("No Data!!");
-            ch_option.innerHTML = '<b> Students of ' + op2 + ' year are yet to be placed </b> <br> ';
+            p_tag1.innerHTML = '<b> Students of ' + op2 + ' year are yet to be placed </b> <br> ';
             table.innerHTML = '';
             table2.innerHTML = '';
             p_alumni.innerHTML = '';
@@ -139,10 +133,7 @@ filter_form.addEventListener('submit', async (e) => {
             let placed = await response.json(); // read response body and parse as JSON
             console.log(response);
 
-            ch_option.innerHTML = '<b> List of placed students from ' + op2 + ' year are: </b> <br> ';
-            //for (let i = 0; i < placed.length; i++) {
-            //    ch_option.innerHTML += placed[i][0] + '&emsp;' + placed[i][1] + '&emsp;' + placed[i][2] + '&emsp;'+ placed[i][3] + '<br>';
-            //}
+            p_tag1.innerHTML = '<b> List of placed students from ' + op2 + ' year are: </b> <br> ';
 
             table.innerHTML = '';
             let row = table.insertRow(0);
@@ -183,7 +174,7 @@ filter_form.addEventListener('submit', async (e) => {
         if(response['status'] === 500)
         {
             console.log("No Data!!");
-            ch_option.innerHTML = '<b> Students of ' + op2 + ' domain are yet to be placed </b> <br> ';
+            p_tag1.innerHTML = '<b> Students of ' + op2 + ' domain are yet to be placed </b> <br> ';
             table.innerHTML = '';
             table2.innerHTML = '';
             p_alumni.innerHTML = '';
@@ -192,10 +183,8 @@ filter_form.addEventListener('submit', async (e) => {
             let placed = await response.json(); // read response body and parse as JSON
             console.log(response);
 
-            ch_option.innerHTML = '<b> List of placed students from ' + op2 + ' domain are: </b> <br> ';
-            //for (let i = 0; i < placed.length; i++) {
-            //    ch_option.innerHTML += placed[i][0] + '&emsp;' + placed[i][1] + '&emsp;' + placed[i][2] + '&emsp;'+ placed[i][3] + '<br>';
-            //}
+            p_tag1.innerHTML = '<b> List of placed students from ' + op2 + ' domain are: </b> <br> ';
+
             table.innerHTML = '';
             let row = table.insertRow(0);
             let cell1 = row.insertCell(0);
@@ -239,7 +228,7 @@ filter_form.addEventListener('submit', async (e) => {
         if(response['status'] === 500)
         {
             console.log("No Data!!");
-            ch_option.innerHTML = '<b> Students of ' + op2 + ' specialisation are yet to be placed </b> <br> ';
+            p_tag1.innerHTML = '<b> Students of ' + op2 + ' specialisation are yet to be placed </b> <br> ';
             table.innerHTML = '';
             table2.innerHTML = '';
             p_alumni.innerHTML = '';
@@ -248,10 +237,7 @@ filter_form.addEventListener('submit', async (e) => {
             let placed = await response.json(); // read response body and parse as JSON
             console.log(response);
 
-            ch_option.innerHTML = '<b> List of placed students from ' + op2 + ' specialisation are: </b> <br> ';
-            //for (let i = 0; i < placed.length; i++) {
-            //    ch_option.innerHTML += placed[i][0] + '&emsp;' + placed[i][1] + '&emsp;' + placed[i][2] + '<br>';
-            //}
+            p_tag1.innerHTML = '<b> List of placed students from ' + op2 + ' specialisation are: </b> <br> ';
 
             table.innerHTML = '';
             let row = table.insertRow(0);
@@ -291,7 +277,7 @@ async function button_options(){
         document.getElementById("div-Year").style.display = "none";
         document.getElementById("div-Specialisation").style.display = "none";
 
-        let ch_option = document.getElementById('end_result');
+        let p_tag1 = document.getElementById('end_result');
         let table = document.getElementById('results_table');
         let table2 = document.getElementById('alumni_table');
         let p_alumni = document.getElementById("alumni_p");
@@ -300,7 +286,7 @@ async function button_options(){
         if(response['status'] === 500)
         {
             console.log("No Data!!");
-            ch_option.innerHTML = '<b> Students are yet to be placed!! </b>';
+            p_tag1.innerHTML = '<b> Students are yet to be placed!! </b>';
 
             table.innerHTML = '';
             table2.innerHTML = '';
@@ -310,10 +296,7 @@ async function button_options(){
             let placed = await response.json(); // read response body and parse as JSON
             console.log(placed);
 
-            ch_option.innerHTML = '<b> Placed Students List </b> <br>';
-            //for (let i = 0; i < placed.length; i++) {
-            //    ch_option.innerHTML += placed[i][0] + '&emsp;' + placed[i][1] + '&emsp;' + placed[i][2] + '<br>';
-            //}
+            p_tag1.innerHTML = '<b> Placed Students List </b> <br>';
 
             table.innerHTML = '';
             let row = table.insertRow(0);
@@ -348,16 +331,17 @@ async function button_options(){
         document.getElementById("div-Specialisation").style.display = "none";
 
 
-        let ch_option = document.getElementById('end_result');
+        let p_tag1 = document.getElementById('end_result');
         let table = document.getElementById('results_table');
         let table2 = document.getElementById('alumni_table');
         let p_alumni = document.getElementById("alumni_p");
 
         let response = await fetch("api/student/get_not_placed");
+        console.log(response);
         if(response['status'] === 500)
         {
             console.log("No Data!!");
-            ch_option.innerHTML = ' <b> All are placed :D </b>';
+            p_tag1.innerHTML = ' <b> All are placed :D </b>';
             let table = document.getElementById('results_table');
             table.innerHTML = '';
             table2.innerHTML = '';
@@ -367,10 +351,7 @@ async function button_options(){
             let not_placed = await response.json(); // read response body and parse as JSON
             console.log(not_placed);
 
-            ch_option.innerHTML = '<b> List of students who are yet to be placed are </b> <br>';
-            //for (let i = 0; i < not_placed.length; i++) {
-            //    ch_option.innerHTML += not_placed[i][0] + '&emsp;' + not_placed[i][1] + '&emsp;' + not_placed[i][2] + '<br>'
-            //}
+            p_tag1.innerHTML = '<b> List of students who are yet to be placed are </b> <br>';
 
             table.innerHTML = '';
             let row = table.insertRow(0);
@@ -405,11 +386,11 @@ async function button_options(){
         let response = await fetch("api/org/get");
         let options = await response.json(); // read response body and parse as JSON
         console.log(options);
-        let ch_option = document.getElementById('org');
-        ch_option.innerHTML = '<option value=""> Choose...</option>';
+        let p_tag1 = document.getElementById('org');
+        p_tag1.innerHTML = '<option value=""> Choose...</option>';
 
         for(let i = 0 ; i<options.length ; i++){
-            ch_option.innerHTML += '<option value="'+options[i]+'">'+options[i]+'</option>';
+            p_tag1.innerHTML += '<option value="'+options[i]+'">'+options[i]+'</option>';
         }
 
         document.getElementById("for_button").style.display = "block";
@@ -424,11 +405,11 @@ async function button_options(){
         let response = await fetch("api/student/year");
         let options = await response.json(); // read response body and parse as JSON
         console.log(options);
-        let ch_option = document.getElementById('year');
-        ch_option.innerHTML = '<option value=""> Choose...</option>';
+        let p_tag1 = document.getElementById('year');
+        p_tag1.innerHTML = '<option value=""> Choose...</option>';
 
         for(let i = 0 ; i<options.length ; i++){
-            ch_option.innerHTML += '<option value="'+options[i]+'">'+options[i]+'</option>';
+            p_tag1.innerHTML += '<option value="'+options[i]+'">'+options[i]+'</option>';
         }
 
         document.getElementById("for_button").style.display = "block";
@@ -443,11 +424,11 @@ async function button_options(){
         let response = await fetch("api/student/domain");
         let options = await response.json(); // read response body and parse as JSON
         console.log(options);
-        let ch_option = document.getElementById('domain');
-        ch_option.innerHTML = '<option value=""> Choose...</option>';
+        let p_tag1 = document.getElementById('domain');
+        p_tag1.innerHTML = '<option value=""> Choose...</option>';
 
         for(let i = 0 ; i<options.length ; i++){
-            ch_option.innerHTML += '<option value="'+options[i]+'">'+options[i]+'</option>';
+            p_tag1.innerHTML += '<option value="'+options[i]+'">'+options[i]+'</option>';
         }
 
         document.getElementById("for_button").style.display = "block";
@@ -462,27 +443,27 @@ async function button_options(){
         let response = await fetch("api/student/specialisation");
         let options = await response.json(); // read response body and parse as JSON
         console.log(options);
-        let ch_option = document.getElementById('Specialisation');
-        ch_option.innerHTML = '<option value=""> Choose...</option>';
+        let p_tag1 = document.getElementById('Specialisation');
+        p_tag1.innerHTML = '<option value=""> Choose...</option>';
 
         for(let i = 0 ; i<options.length ; i++){
-            ch_option.innerHTML += '<option value="'+options[i]+'">'+options[i]+'</option>';
+            p_tag1.innerHTML += '<option value="'+options[i]+'">'+options[i]+'</option>';
         }
 
         document.getElementById("for_button").style.display = "block";
     }
 
 }
-
+// this->
 async function fetch_options(){
     let response = await fetch("api/employee/options");
     let options = await response.json(); // read response body and parse as JSON
     console.log(options);
-    let ch_option = document.getElementById('options');
-    ch_option.innerHTML = '<option value=""> Choose...</option>';
+    let op1 = document.getElementById('options');
+    op1.innerHTML = '<option value=""> Choose...</option>';
 
     for(let i = 0 ; i<options.length ; i++){
-        ch_option.innerHTML += '<option value="'+options[i]+'">'+options[i]+'</option>';
+        op1.innerHTML += '<option value="'+options[i]+'">'+options[i]+'</option>';
     }
 
     //----------------------------------------------------------------------------

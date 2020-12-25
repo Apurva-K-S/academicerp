@@ -32,22 +32,6 @@ public class employeeController {
         return Response.ok().entity(departments).build();
     }
 
-    /*@POST
-    @Path("/register")
-    @Consumes(MediaType.MULTIPART_FORM_DATA)
-    @Produces(MediaType.TEXT_PLAIN)
-    public Response registerCourse(@FormDataParam("name") String name,
-                                   @FormDataParam("description") String description,
-                                   @FormDataParam("credits") Integer credits) throws URISyntaxException {
-        System.out.println(name);
-        System.out.println(description);
-        System.out.println(credits);
-        CoursesService courseservice = new CoursesService();
-        courseservice.addCourse(name, description, credits);
-        return Response.ok().build();
-
-    }*/
-
     @POST
     @Path("/add")
     public Response addEmployee() throws URISyntaxException{
